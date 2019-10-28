@@ -5,13 +5,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
   providedIn: 'root'
 })
 export class ApiService {
-  API_CRED = "Basic " + btoa("Shadbolt:Youthcup2011")
+  API_CRED = "Basic " + btoa("Shadbolt"+":"+"Youthcup2011")
   API_URL = "https://prd-sql01.ddns.net/api/entry/read.php"
   constructor(private httpClient: HttpClient) { }
 
   public getGameData() {
     let requestHeaders = new HttpHeaders({
-      'Authentication': this.API_CRED, 
+      'Authorization': this.API_CRED, 
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     })
