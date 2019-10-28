@@ -14,7 +14,7 @@ export class GamedataComponent implements OnInit {
   ngOnInit() {
     this.apiService.getGameData().subscribe((data)=>{
       console.log(data);
-      this.gameData = data;
+      this.gameData = data.records;
     });
   }
 
