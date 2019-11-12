@@ -1,4 +1,12 @@
-<p>gamedata works!</p>
+<div>Game Data</div>
+
+<google-chart #chart
+[title]="title"
+[type]="type"
+[data]="data"
+[width]="width"
+[height]="height">
+</google-chart>
 
 <div *ngFor="let data of gameData">
     <p>Successes: {{data.successes}}</p>
