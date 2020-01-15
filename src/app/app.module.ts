@@ -8,8 +8,23 @@ import {HttpClientModule } from '@angular/common/http'
 import {GoogleChartsModule} from 'angular-google-charts';
 import { LoginComponentComponent } from './login-component/login-component.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { MatFormFieldModule } from '@angular/material/form-field'
-import { MatInputModule } from '@angular/material/input'
+import { FormsModule,ReactiveFormsModule } from '@angular/forms'; 
+import {   
+  MatButtonModule,  
+  MatMenuModule,  
+  MatToolbarModule,  
+  MatIconModule,  
+  MatCardModule,  
+  MatFormFieldModule,  
+  MatInputModule,  
+  MatDatepickerModule,  
+  MatDatepicker,  
+  MatNativeDateModule,  
+  MatRadioModule,  
+  MatSelectModule,  
+  MatOptionModule,  
+  MatSlideToggleModule } from '@angular/material'
+
 
 @NgModule({
   declarations: [
@@ -23,8 +38,22 @@ import { MatInputModule } from '@angular/material/input'
     HttpClientModule,
     GoogleChartsModule,
     BrowserAnimationsModule,
-    MatFormFieldModule,
-    MatInputModule
+    FormsModule,
+    ReactiveFormsModule,
+    MatButtonModule,  
+    MatMenuModule,  
+    MatToolbarModule,  
+    MatIconModule,  
+    MatCardModule,  
+    BrowserAnimationsModule,  
+    MatFormFieldModule,  
+    MatInputModule,  
+    MatDatepickerModule,  
+    MatNativeDateModule,  
+    MatRadioModule,  
+    MatSelectModule,  
+    MatOptionModule,  
+    MatSlideToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]
