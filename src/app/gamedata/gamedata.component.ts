@@ -13,9 +13,13 @@ export class GamedataComponent implements OnInit {
   //google chart properties
   title = 'Accuracy';
   type = 'ColumnChart';
-  data = [['A', 81.76286090720873], ['B', 82.24383116883116], ['C', 82.58051948051947]] ;
+  data = [['A', 3], ['B', 4], ['C', 5]] ;
   width = 800;
   height = 400;
+
+
+
+  //data = [['A', 81.76286090720873], ['B', 82.24383116883116], ['C', 82.58051948051947]] ;
 
 
   constructor(private apiService: ApiService) { }
