@@ -1,14 +1,20 @@
 <div class="center">
+    <div class=" main-text title">GAMETRICS</div>
+    <div class="main-text subtitle">
+        Log in with your work email address to start tracking 
+        <br>
+        your patient’s outpatient game progress
+    </div>
     <form [formGroup]="regiForm" (ngSubmit)="onFormSubmit(regiForm.value)">
         <table>
             <tr>
                 <td>
                     <mat-form-field appearance="outline" [floatLabel]="'always'">
                             <mat-label>email address</mat-label>
-                            <input matInput formControlName="Email" placeholder="someone@example.com">
+                            <input matInput formControlName="email" placeholder="someone@example.com">
                     </mat-form-field>
                     <mat-error>
-                        <span *ngIf="!regiForm.get('Email').valid && regiForm.get('Email').touched">
+                        <span *ngIf="!regiForm.get('email').valid && regiForm.get('email').touched">
                             Please enter valid email.
                         </span>
                     </mat-error>
@@ -18,10 +24,10 @@
                 <td>
                     <mat-form-field appearance="outline" [floatLabel]="'always'">
                             <mat-label>password</mat-label>
-                            <input matInput formControlName="Password" type="password" placeholder="password">
+                            <input matInput formControlName="password" type="password" placeholder="password">
                     </mat-form-field>
                     <mat-error>
-                        <span *ngIf="!regiForm.get('Password').valid && regiForm.get('Password').touched">
+                        <span *ngIf="!regiForm.get('password').valid && regiForm.get('password').touched">
                             Please enter your password.
                         </span>
                     </mat-error>                    
@@ -29,7 +35,7 @@
             </tr>
             <tr>
                 <td class="content-center">
-                    <button color="primary" mat-flat-button [disabled]="!regiForm.valid">Log In</button>
+                    <button color="primary" mat-flat-button [disabled]="!regiForm.valid">LOG IN</button>
                 </td>
             </tr>
         </table>

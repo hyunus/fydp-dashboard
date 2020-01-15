@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
   providedIn: 'root'
 })
 
-//Class that pulls data from analytics API
+//Class that pulls data from API
 export class ApiService {
   API_CRED = "Basic " + window.btoa("Shadbolt:Youth_cup2011");
   API_URL = "https://prd-sql01.ddns.net/api/entry/read.php"

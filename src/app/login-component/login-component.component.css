@@ -3,9 +3,26 @@
     height: 100vh; 
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 .content-center {
     display: flex;
     justify-content: center;
+}
+
+.main-text {
+    font-family: 'DIN Alternate';
+    font-weight: bold;
+    text-align: center;
+}
+
+.title {
+    font-size: 56px;
+    margin-bottom: 30px;
+}
+
+.subtitle {
+    font-size: 20px;
+    margin-bottom: 54px;
 }
