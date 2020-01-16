@@ -13,8 +13,6 @@ export class AuthService {
   constructor(private httpClient: HttpClient) {}
 
   public login(credentials) {
-    return this.httpClient.post(this.API_URL, credentials, {
-      headers: this.HEADERS,
-    })
+    return this.httpClient.post(this.API_URL, credentials)
   }
 }

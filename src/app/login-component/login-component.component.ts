@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormsModule, NgForm } from '@angular/forms'
-import { AuthService } from '../auth.service'
+import { AuthService } from '../_services/auth.service'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-login-component',
@@ -12,8 +13,13 @@ export class LoginComponentComponent implements OnInit {
   regiForm: FormGroup;
   email: string='';
   password: string='';
+  error: string='';
 
-  constructor(private fb: FormBuilder, private authService: AuthService) { 
+  constructor(
+    private fb: FormBuilder, 
+    private authService: AuthService,
+    private router: Router
+    ) { 
     this.regiForm = fb.group({
       'email': [null, Validators.compose([Validators.required,Validators.email])],
       'password': [null, Validators.required]
@@ -23,8 +29,11 @@ export class LoginComponentComponent implements OnInit {
   onFormSubmit(form:NgForm)  
   {  
     this.authService.login(form).subscribe((response) => {
-      console.log(response);
-    })
+      localStorage.setItem('currentUser', JSON.stringify(response))
+      this.router.navigate(["/"]);
+    },
+    error => this.error = error
+    )
   }  
 
   ngOnInit() {

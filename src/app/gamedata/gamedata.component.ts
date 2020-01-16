@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../api.service';
+import { ApiService } from '../_services/api.service';
 
 @Component({
   selector: 'app-gamedata',
@@ -26,10 +26,10 @@ export class GamedataComponent implements OnInit {
 
   ngOnInit() {
     //get data from backend
-    this.apiService.getGameData().subscribe((data)=>{
-      console.log(data);
-      this.gameData = data['records'];
-    });
+    // this.apiService.getGameData().subscribe((data)=>{
+    //   console.log(data);
+    //   this.gameData = data['records'];
+    // });
   }
 
 }
