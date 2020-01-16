@@ -1,13 +1,28 @@
 .example-container {
-    width: 300px;
-    height: 100vh;
-    padding: 40px;
     background: #FFFFFF;
     border: 1px solid #C4C6D1;
   }
 
+.background {
+  background-color: #faf9f7;
+  height: 100vh;
+  padding-top: 70px;
+  padding-left: 70px;
+}
+
 mat-sidenav {
   width: 300px;
+  height: 100vh;
+  padding-left: 40px;
+}
+
+mat-card {
+  padding: 40px;
+  width: 840px;
+}
+
+.home {
+  background-image: url(/assets/Home.png);
 }
 
 .center {
@@ -45,8 +60,4 @@ mat-sidenav {
   font-weight: bold;
   margin-bottom: 30px;
   margin-top: 40px;
-}
-
-mat-list-item {
-  justify-content: center;
 }
