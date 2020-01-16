@@ -23,14 +23,19 @@ import {
   MatRadioModule,  
   MatSelectModule,  
   MatOptionModule,  
-  MatSlideToggleModule } from '@angular/material'
+  MatSlideToggleModule,
+  MatSidenavModule,
+  MatListModule, 
+  MatList} from '@angular/material';
+import { HomeComponent } from './home/home.component'
 
 
 @NgModule({
   declarations: [
     AppComponent,
     GamedataComponent,
-    LoginComponentComponent
+    LoginComponentComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +58,9 @@ import {
     MatRadioModule,  
     MatSelectModule,  
     MatOptionModule,  
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatSidenavModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

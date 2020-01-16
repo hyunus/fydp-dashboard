@@ -32,6 +32,7 @@ export class LoginComponentComponent implements OnInit {
       localStorage.setItem('currentUser', JSON.stringify(response))
       this.router.navigate(["/"]);
     },
+    //still need to surface this error to the user
     error => this.error = error
     )
   }  
