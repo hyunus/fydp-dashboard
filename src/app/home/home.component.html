@@ -1,34 +1,48 @@
-<mat-sidenav-container class="example-container">
+<mat-sidenav-container class="sidenav-container">
     <mat-sidenav mode="side" opened>
-        <div class="main-text navtitle">GAMETRICS</div>
-        <mat-nav-list class="main-text">
-            <a mat-list-item>Games</a>
-            <a mat-list-item>Patients</a>
-            <a mat-list-item>Settings</a>
-            <a mat-list-item>FAQ</a>
-        </mat-nav-list>
+        <div class="list-container">
+            <div class="main-text navtitle">pluto care</div>
+            <mat-nav-list class="body-text">
+                <a mat-list-item>Games</a>
+                <a mat-list-item>Patients</a>
+                <a mat-list-item>Settings</a>
+                <a mat-list-item>FAQ</a>
+            </mat-nav-list>
+        </div>
+        <div class="name-container body-text">
+            <mat-icon class="face-container">face</mat-icon>
+            {{user['first name']}} {{user['last name']}}
+        </div>
     </mat-sidenav>
     <mat-sidenav-content class="background">
-        <div>
-            <mat-card class="home">
-                <table>
-                    <tr>
-                        <td>
-                            <div class="main-text title">
-                                Good afternoon, Lily
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="main-text subtitle">
-                                Welcome to Gametrics! Start browsing our games or adding your patients 
-                                to track their gameplay progress.
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </mat-card>
+        <mat-card class="home">
+            <table>
+                <tr>
+                    <td>
+                        <div class="body-text title">
+                            Good afternoon, {{user['first name']}}
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="body-text subtitle">
+                            Welcome to Pluto Care! Start browsing our games or adding your patients 
+                            to track their gameplay progress.
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </mat-card>
+        <div *ngFor="let article of articles" class="main-text">
+                <mat-card>
+                    <mat-card-title>{{article.title}}</mat-card-title>
+                    <mat-card-subtitle>{{article.subtitle}}</mat-card-subtitle>
+                    <mat-card-content>
+                        <a>{{article.link}}</a>
+                    </mat-card-content>
+                    <img mat-card-image src="{{article.img}}">
+                </mat-card>
         </div>
     </mat-sidenav-content>
 </mat-sidenav-container>

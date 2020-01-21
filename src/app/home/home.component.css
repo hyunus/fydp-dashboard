@@ -1,24 +1,45 @@
-.example-container {
+.sidenav-container {
     background: #FFFFFF;
     border: 1px solid #C4C6D1;
+    height: 100vh;
   }
 
 .background {
   background-color: #faf9f7;
-  height: 100vh;
   padding-top: 70px;
   padding-left: 70px;
+}
+
+.name-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  font-size: 18px;
+}
+
+.list-container {
+  padding-left: 40px;
+}
+
+.face-container {
+  margin-right: 10px;
 }
 
 mat-sidenav {
   width: 300px;
   height: 100vh;
-  padding-left: 40px;
 }
 
 mat-card {
   padding: 40px;
+  margin-bottom: 30px;
   width: 840px;
+  flex-direction: column;
 }
 
 .home {
@@ -43,16 +64,19 @@ mat-card {
   font-weight: bold;
 }
 
+.body-text {
+  font-family: 'Roboto';
+  font-weight: bold;  
+}
+
 .title {
   font-size: 56px;
   margin-bottom: 30px;
-  text-align: center;
 }
 
 .subtitle {
   font-size: 20px;
   margin-bottom: 54px;
-  text-align: center;
 }
 
 .navtitle {

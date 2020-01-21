@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
   providedIn: 'root'
 })
 export class AuthService {
-  API_URL = "https://prd-sql01.ddns.net/api/logins/login.php"
+  API_URL = "https://prd-sql01.ddns.net/logins/login"
   HEADERS = new HttpHeaders({
     'Content-Type': 'application/json'
   })
