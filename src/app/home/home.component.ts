@@ -24,11 +24,9 @@ export class HomeComponent implements OnInit {
         title: "See Pluto Care's new outpatient adherence tracking features",
         subtitle: "Timeline, Performance, and Homework",
         link: "OUTPATIENT ADHERENCE",
-        img: "/assets/article2.PNG"
-
+        img: "/assets/article2.png"
       }
     ]
-    console.log(this.articles);
    }
 
   ngOnInit() {
