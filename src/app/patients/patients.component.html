@@ -1,0 +1,25 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav mode="side" opened>
+        <div class="list-container">
+            <div class="main-text navtitle">
+                <a href='/' style="text-decoration: none;">pluto care</a>
+            </div>
+            <mat-nav-list class="body-text">
+                <a mat-list-item>Games</a>
+                <a mat-list-item href="/patients">Patients</a>
+                <a mat-list-item>Settings</a>
+                <a mat-list-item>FAQ</a>
+            </mat-nav-list>
+        </div>
+        <div class="name-container body-text">
+            <mat-icon class="face-container">account_circle</mat-icon>
+            {{user['first name']}} {{user['last name']}}
+        </div>
+    </mat-sidenav>
+    <mat-sidenav-content class="background">
+        <mat-card>
+            <mat-card-title>Patients</mat-card-title>
+            <mat-card-content>Manage your patient profiles here</mat-card-content>
+        </mat-card>
+    </mat-sidenav-content>
+</mat-sidenav-container>

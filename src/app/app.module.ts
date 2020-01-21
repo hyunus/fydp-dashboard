@@ -27,7 +27,8 @@ import {
   MatSidenavModule,
   MatListModule, 
   MatList} from '@angular/material';
-import { HomeComponent } from './home/home.component'
+import { HomeComponent } from './home/home.component';
+import { PatientsComponent } from './patients/patients.component'
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { HomeComponent } from './home/home.component'
     AppComponent,
     GamedataComponent,
     LoginComponentComponent,
-    HomeComponent
+    HomeComponent,
+    PatientsComponent
   ],
   imports: [
     BrowserModule,
