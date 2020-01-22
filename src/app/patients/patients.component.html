@@ -17,9 +17,90 @@
         </div>
     </mat-sidenav>
     <mat-sidenav-content class="background">
-        <mat-card>
+        <mat-card *ngIf="!addView">
             <mat-card-title>Patients</mat-card-title>
             <mat-card-content>Manage your patient profiles here</mat-card-content>
+            <form [formGroup]="searchForm">
+                <mat-form-field class="form-field" appearance="outline">
+                     <input  matInput formControlName="query" placeholder="Search for patient using their name or UID">
+                </mat-form-field>
+            </form>
+            <div class="vertical-center">
+                <mat-icon class="add-icon" color="primary">add_circle</mat-icon>
+                <button mat-button (click)="toggleView()">ADD A PATIENT</button>
+            </div>
+        </mat-card>
+        <mat-card *ngIf="addView">
+            <mat-card-title>Add a Patient</mat-card-title>
+            <form [formGroup]="patientForm" (ngSubmit)="addPatient(patientForm.value)">
+                <table>
+                    <tr>
+                        <td>
+                            <mat-form-field appearance="outline" [floatLabel]="'always'">
+                                <mat-label>first name</mat-label>
+                                <input matInput formControlName="firstName">
+                            </mat-form-field>
+                        </td>
+                        <td>
+                            <mat-form-field appearance="outline" [floatLabel]="'always'">
+                                <mat-label>last name</mat-label>
+                                <input matInput formControlName="lastName">
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td>
+                            <mat-card-content>Contact Information</mat-card-content>
+                            <mat-card-content>Email addresses listed below will be used to send the games to the child or caretaker’s devices</mat-card-content>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-form-field class="form-field" appearance="outline" [floatLabel]="'always'">
+                                <mat-label>email address</mat-label>
+                                <input matInput formControlName="email">
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-form-field class="form-field" appearance="outline" [floatLabel]="'always'">
+                                <mat-label>parent email address</mat-label>
+                                <input matInput formControlName="parentEmail">
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-card-content>Clinical Information</mat-card-content>
+                            <mat-card-content>[Something about how it will be used ie trends, visualizations; depersonalizd for researchers]</mat-card-content>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-form-field class="form-field" appearance="outline" [floatLabel]="'always'">
+                                <mat-label>Conditions</mat-label>
+                                <input matInput formControlName="conditions">
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-form-field class="form-field" appearance="outline" [floatLabel]="'always'">
+                                <mat-label>Goals</mat-label>
+                                <input matInput formControlName="goals">
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button mat-button [disabled]="!patientForm.valid">ADD PATIENT</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
         </mat-card>
     </mat-sidenav-content>
 </mat-sidenav-container>

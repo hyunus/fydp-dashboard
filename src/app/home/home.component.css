@@ -59,6 +59,11 @@ mat-card {
   justify-content: center;
 }
 
+.vertical-center {
+  display: flex;
+  align-items: center;
+}
+
 .main-text {
   font-family: 'DIN Alternate';
   font-weight: bold;
