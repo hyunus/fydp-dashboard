@@ -22,6 +22,9 @@ export class PatientsComponent implements OnInit {
   conditions: string="";
   goals: string=""
 
+  //patient list 
+  patients: Array<Object>=[];
+
   constructor(private fb: FormBuilder) { 
     this.user = JSON.parse(localStorage.getItem('currentUser'));
     this.searchForm = fb.group({
@@ -35,6 +38,26 @@ export class PatientsComponent implements OnInit {
       'conditions': [null, Validators.required],
       'goals': [null, Validators.required]
     })
+
+    //placeholder patients list for testing purposes
+    this.patients = [
+      {
+        firstName: "Jane",
+        lastName: "Doe"
+      },
+      {
+        firstName: "John",
+        lastName: "Doe"
+      },
+      {
+        firstName: "Alex",
+        lastName: "Walker"
+      },
+      {
+        firstName: "Rebecca",
+        lastName: "Whitman"
+      }
+    ]
    }
 
    toggleView() {

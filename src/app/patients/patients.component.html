@@ -12,14 +12,16 @@
             </mat-nav-list>
         </div>
         <div class="name-container body-text">
-            <mat-icon class="face-container">account_circle</mat-icon>
+            <ngx-avatar class="face-container" name="{{user['first name']}} {{user['last name']}}"></ngx-avatar>
             {{user['first name']}} {{user['last name']}}
         </div>
     </mat-sidenav>
     <mat-sidenav-content class="background">
+        <!-- main view -->
         <mat-card *ngIf="!addView">
             <mat-card-title>Patients</mat-card-title>
             <mat-card-content>Manage your patient profiles here</mat-card-content>
+            <!-- search bar -->
             <form [formGroup]="searchForm">
                 <mat-form-field class="form-field" appearance="outline">
                      <input  matInput formControlName="query" placeholder="Search for patient using their name or UID">
@@ -29,7 +31,15 @@
                 <mat-icon class="add-icon" color="primary">add_circle</mat-icon>
                 <button mat-button (click)="toggleView()">ADD A PATIENT</button>
             </div>
+            <!-- patient list -->
+            <mat-nav-list>
+                <mat-list-item *ngFor="let patient of patients">
+                    <ngx-avatar matListAvatar name="{{patient.firstName}} {{patient.lastName}}"></ngx-avatar>
+                    <h2 class="body-text" matLine>{{patient.firstName}} {{patient.lastName}}</h2>
+                </mat-list-item>
+            </mat-nav-list>
         </mat-card>
+        <!-- add patient form -->
         <mat-card *ngIf="addView">
             <mat-card-title>Add a Patient</mat-card-title>
             <form [formGroup]="patientForm" (ngSubmit)="addPatient(patientForm.value)">

@@ -27,6 +27,7 @@ import {
   MatSidenavModule,
   MatListModule, 
   MatList} from '@angular/material';
+import { AvatarModule } from 'ngx-avatar';  
 import { HomeComponent } from './home/home.component';
 import { PatientsComponent } from './patients/patients.component'
 
@@ -63,7 +64,8 @@ import { PatientsComponent } from './patients/patients.component'
     MatOptionModule,  
     MatSlideToggleModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    AvatarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
