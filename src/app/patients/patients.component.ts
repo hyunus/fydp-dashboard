@@ -9,7 +9,6 @@ import { FormBuilder, FormGroup, Validators, FormsModule, NgForm } from '@angula
 export class PatientsComponent implements OnInit {
 
   user: object={};
-  searchForm: FormGroup;
   query: string="";
 
   addView: boolean=false;
@@ -27,9 +26,6 @@ export class PatientsComponent implements OnInit {
 
   constructor(private fb: FormBuilder) { 
     this.user = JSON.parse(localStorage.getItem('currentUser'));
-    this.searchForm = fb.group({
-      'query': [null]
-    })
     this.patientForm = fb.group({
       'firstName': [null, Validators.required],
       'lastName': [null, Validators.required],
