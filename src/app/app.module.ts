@@ -28,9 +28,9 @@ import {
   MatListModule, 
   MatList} from '@angular/material';
 import { AvatarModule } from 'ngx-avatar';  
+import { Ng2SearchPipeModule } from 'ng2-search-filter'; 
 import { HomeComponent } from './home/home.component';
-import { PatientsComponent } from './patients/patients.component'
-
+import { PatientsComponent } from './patients/patients.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +65,8 @@ import { PatientsComponent } from './patients/patients.component'
     MatSlideToggleModule,
     MatSidenavModule,
     MatListModule,
-    AvatarModule
+    AvatarModule,
+    Ng2SearchPipeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

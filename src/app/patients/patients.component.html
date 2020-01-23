@@ -1,4 +1,5 @@
 <mat-sidenav-container class="sidenav-container">
+    <!-- side nav -->
     <mat-sidenav mode="side" opened>
         <div class="list-container">
             <div class="main-text navtitle">
@@ -16,24 +17,25 @@
             {{user['first name']}} {{user['last name']}}
         </div>
     </mat-sidenav>
+    <!-- main content -->
     <mat-sidenav-content class="background">
         <!-- main view -->
         <mat-card *ngIf="!addView">
             <mat-card-title>Patients</mat-card-title>
             <mat-card-content>Manage your patient profiles here</mat-card-content>
             <!-- search bar -->
-            <form [formGroup]="searchForm">
-                <mat-form-field class="form-field" appearance="outline">
-                     <input  matInput formControlName="query" placeholder="Search for patient using their name or UID">
-                </mat-form-field>
-            </form>
-            <div class="vertical-center">
-                <mat-icon class="add-icon" color="primary">add_circle</mat-icon>
-                <button mat-button (click)="toggleView()">ADD A PATIENT</button>
-            </div>
+            <mat-form-field class="form-field" appearance="outline">
+                <input  matInput [(ngModel)]="query" placeholder="Search for patient using their name or UID">
+            </mat-form-field>
+            <mat-list>
+                <mat-list-item (click)="toggleView()">
+                    <mat-icon matListAvatar class="add-icon" color="primary">add_circle</mat-icon>
+                    <button mat-button>ADD A PATIENT</button>
+                </mat-list-item>
+            </mat-list>
             <!-- patient list -->
             <mat-nav-list>
-                <mat-list-item *ngFor="let patient of patients">
+                <mat-list-item *ngFor="let patient of patients | filter: query">
                     <ngx-avatar matListAvatar name="{{patient.firstName}} {{patient.lastName}}"></ngx-avatar>
                     <h2 class="body-text" matLine>{{patient.firstName}} {{patient.lastName}}</h2>
                 </mat-list-item>
