@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 
 @Injectable({
   providedIn: 'root'
@@ -15,5 +15,10 @@ export class ApiService {
   public addPatient(patient: Object, OT:string) {
     let url = this.API_URL+"/create_patient?ot_code="+OT;
     return this.httpClient.post(url, patient);
+  }
+
+  public getPatient(OT:string) {
+    let url = this.API_URL+"/read_patient?ot_code="+OT;
+    return this.httpClient.get(url);
   }
 }

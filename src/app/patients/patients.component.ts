@@ -37,24 +37,6 @@ export class PatientsComponent implements OnInit {
     })
 
     //placeholder patients list for testing purposes
-    this.patients = [
-      {
-        firstName: "Jane",
-        lastName: "Doe"
-      },
-      {
-        firstName: "John",
-        lastName: "Doe"
-      },
-      {
-        firstName: "Alex",
-        lastName: "Walker"
-      },
-      {
-        firstName: "Rebecca",
-        lastName: "Whitman"
-      }
-    ]
    }
 
    toggleView() {
@@ -63,13 +45,28 @@ export class PatientsComponent implements OnInit {
 
    addPatient(form:Object) {
      //placeholder for posting the form to the patient API
+    //  console.log(form);
       this.apiService.addPatient(form, this.user['code']).subscribe((response) => {
         console.log(response);
+        this.toggleView();
+      },
+      error => {
+        console.log(error);
       })
-      this.toggleView();
+
+   }
+
+   getPatients() {
+     this.apiService.getPatient(this.user['code']).subscribe((response) => {
+       this.patients = response['records'];
+     },
+     error => {
+       console.log(error);
+     })
    }
 
   ngOnInit() {
+    this.getPatients();
   }
 
 }

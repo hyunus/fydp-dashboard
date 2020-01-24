@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 export class AuthService {
   API_URL = "https://prd-sql01.ddns.net/logins/login"
   HEADERS = new HttpHeaders({
-    'Content-Type': 'application/json'
+    'Content-Type': 'text/html'
   })
 
   constructor(private httpClient: HttpClient) {}
