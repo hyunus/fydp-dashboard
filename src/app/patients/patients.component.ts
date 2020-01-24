@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormsModule, NgForm } from '@angular/forms'
+import { FormBuilder, FormGroup, Validators, FormsModule, NgForm, FormControl } from '@angular/forms'
+import { ApiService } from "../_services/api.service"
 
 @Component({
   selector: 'app-patients',
@@ -19,12 +20,12 @@ export class PatientsComponent implements OnInit {
   email: string="";
   parentEmail: string="";
   conditions: string="";
-  goals: string=""
+  goals: string="";
 
   //patient list 
   patients: Array<Object>=[];
 
-  constructor(private fb: FormBuilder) { 
+  constructor(private fb: FormBuilder, private apiService: ApiService) { 
     this.user = JSON.parse(localStorage.getItem('currentUser'));
     this.patientForm = fb.group({
       'firstName': [null, Validators.required],
@@ -32,7 +33,7 @@ export class PatientsComponent implements OnInit {
       'email': [null, Validators.email],
       'parentEmail': [null, Validators.compose([Validators.required, Validators.email])],
       'conditions': [null, Validators.required],
-      'goals': [null, Validators.required]
+      'goals': [null, Validators.required],
     })
 
     //placeholder patients list for testing purposes
@@ -60,10 +61,12 @@ export class PatientsComponent implements OnInit {
     this.addView = !this.addView;
    }
 
-   addPatient(form:NgForm) {
+   addPatient(form:Object) {
      //placeholder for posting the form to the patient API
-     console.log(form);
-     this.toggleView();
+      this.apiService.addPatient(form, this.user['code']).subscribe((response) => {
+        console.log(response);
+      })
+      this.toggleView();
    }
 
   ngOnInit() {
