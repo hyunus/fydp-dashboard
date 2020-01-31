@@ -13,12 +13,12 @@ export class ApiService {
   constructor(private httpClient: HttpClient) {}
 
   public addPatient(patient: Object, OT:string) {
-    let url = this.API_URL+"/create_patient?ot_code="+OT;
+    let url = this.API_URL+"/create_patient?ot="+OT;
     return this.httpClient.post(url, patient);
   }
 
   public getPatient(OT:string) {
-    let url = this.API_URL+"/read_patient?ot_code="+OT;
+    let url = this.API_URL+"/read_patient?ot="+OT;
     return this.httpClient.get(url);
   }
 }

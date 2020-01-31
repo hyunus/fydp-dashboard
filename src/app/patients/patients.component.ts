@@ -27,6 +27,7 @@ export class PatientsComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private apiService: ApiService) { 
     this.user = JSON.parse(localStorage.getItem('currentUser'));
+    //assigning add patient form properties
     this.patientForm = fb.group({
       'firstName': [null, Validators.required],
       'lastName': [null, Validators.required],
@@ -35,8 +36,6 @@ export class PatientsComponent implements OnInit {
       'conditions': [null, Validators.required],
       'goals': [null, Validators.required],
     })
-
-    //placeholder patients list for testing purposes
    }
 
    toggleView() {
@@ -44,16 +43,13 @@ export class PatientsComponent implements OnInit {
    }
 
    addPatient(form:Object) {
-     //placeholder for posting the form to the patient API
-    //  console.log(form);
       this.apiService.addPatient(form, this.user['code']).subscribe((response) => {
-        console.log(response);
+        this.patients = response['records'];
         this.toggleView();
       },
       error => {
         console.log(error);
       })
-
    }
 
    getPatients() {
@@ -68,5 +64,4 @@ export class PatientsComponent implements OnInit {
   ngOnInit() {
     this.getPatients();
   }
-
 }

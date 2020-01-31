@@ -23,6 +23,7 @@ if (currentUser && this.checkExpiry(currentUser)) {
  
 // not logged in so redirect to login page
 this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
+localStorage.setItem('currentUser', "");
 return false;
 }
 
