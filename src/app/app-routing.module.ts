@@ -4,12 +4,14 @@ import { HomeComponent } from './home/home.component'
 import { LoginComponentComponent } from './login-component/login-component.component';
 import { PatientsComponent } from './patients/patients.component'
 import { AuthGuard } from './_helpers/auth.guard';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent, canActivate:[AuthGuard]},
   {path: 'login', component: LoginComponentComponent},
   {path: 'patients', component: PatientsComponent, canActivate:[AuthGuard]},
-  {path: '**', redirectTo: ''}
+  {path: 'profile', component: ProfileComponent, canActivate:[AuthGuard]},
+  // {path: '**', redirectTo: ''}
 ];
 
 @NgModule({

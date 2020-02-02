@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormsModule, NgForm, FormControl } from '@angular/forms'
 import { ApiService } from "../_services/api.service"
+import { Router } from "@angular/router"
 
 @Component({
   selector: 'app-patients',
@@ -25,7 +26,10 @@ export class PatientsComponent implements OnInit {
   //patient list 
   patients: Array<Object>=[];
 
-  constructor(private fb: FormBuilder, private apiService: ApiService) { 
+  constructor(
+    private fb: FormBuilder, 
+    private apiService: ApiService, 
+    private router: Router) { 
     this.user = JSON.parse(localStorage.getItem('currentUser'));
     //assigning add patient form properties
     this.patientForm = fb.group({
@@ -60,6 +64,10 @@ export class PatientsComponent implements OnInit {
        console.log(error);
      })
    }
+
+   goProfile(uid: string) {
+      this.router.navigate(['/profile'], {queryParams: {id: uid}});
+    }
 
   ngOnInit() {
     this.getPatients();

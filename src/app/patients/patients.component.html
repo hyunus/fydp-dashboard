@@ -35,7 +35,7 @@
             </mat-list>
             <!-- patient list -->
             <mat-nav-list>
-                <mat-list-item *ngFor="let patient of patients | filter: query">
+                <mat-list-item *ngFor="let patient of patients | filter: query" (click)="goProfile(patient.uid)">
                     <ngx-avatar matListAvatar name="{{patient.firstName}} {{patient.lastName}}"></ngx-avatar>
                     <h2 class="body-text" matLine>{{patient.firstName}} {{patient.lastName}}</h2>
                 </mat-list-item>

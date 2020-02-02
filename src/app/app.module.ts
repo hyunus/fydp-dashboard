@@ -33,6 +33,7 @@ import { AvatarModule } from 'ngx-avatar';
 import { Ng2SearchPipeModule } from 'ng2-search-filter'; 
 import { HomeComponent } from './home/home.component';
 import { PatientsComponent } from './patients/patients.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { PatientsComponent } from './patients/patients.component';
     GamedataComponent,
     LoginComponentComponent,
     HomeComponent,
-    PatientsComponent
+    PatientsComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
