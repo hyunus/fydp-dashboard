@@ -21,4 +21,9 @@ export class ApiService {
     let url = this.API_URL+"/read_patient?ot="+OT;
     return this.httpClient.get(url);
   }
+
+  public getProfile(OT:string, patient: string) {
+    let url = this.API_URL+`/read_homework?ot=${OT}&uid=${patient}`
+    return this.httpClient.get(url)
+  }
 }
