@@ -66,7 +66,8 @@ export class PatientsComponent implements OnInit {
    }
 
    goProfile(uid: string) {
-      this.router.navigate(['/profile'], {queryParams: {id: uid}});
+      // this.router.navigate(['/#profile'], {queryParams: {id: uid}});
+      window.location.href=`/#profile?id=${uid}`
     }
 
   ngOnInit() {

@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HTTP_INTERCEPTORS } from '@angular/common/http'
 import { AuthInterceptor } from './_helpers/auth.interceptor'
+import { LocationStrategy, HashLocationStrategy} from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -46,7 +47,6 @@ import { ProfileComponent } from './profile/profile.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
     GoogleChartsModule,
     BrowserAnimationsModule,
@@ -70,13 +70,17 @@ import { ProfileComponent } from './profile/profile.component';
     MatSidenavModule,
     MatListModule,
     AvatarModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    AppRoutingModule //needs to stay at the bottom
   ],
   providers: [{
     //intercept every HTTP request and attach token
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true
+  }, {
+    provide: LocationStrategy,
+    useClass: HashLocationStrategy,
   }],
   bootstrap: [AppComponent]
 })
