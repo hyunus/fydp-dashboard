@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FormsModule,ReactiveFormsModule } from '@angular/forms'; 
 import {   
   MatButtonModule,  
+  MatChipsModule,
   MatMenuModule,  
   MatToolbarModule,  
   MatIconModule,  
@@ -29,7 +30,8 @@ import {
   MatSlideToggleModule,
   MatSidenavModule,
   MatListModule, 
-  MatList} from '@angular/material';
+  MatGridListModule
+  } from '@angular/material';
 import { AvatarModule } from 'ngx-avatar';  
 import { Ng2SearchPipeModule } from 'ng2-search-filter'; 
 import { HomeComponent } from './home/home.component';
@@ -53,6 +55,7 @@ import { ProfileComponent } from './profile/profile.component';
     FormsModule,
     ReactiveFormsModule,
     MatButtonModule,  
+    MatChipsModule,
     MatMenuModule,  
     MatToolbarModule,  
     MatIconModule,  
@@ -69,6 +72,7 @@ import { ProfileComponent } from './profile/profile.component';
     MatSlideToggleModule,
     MatSidenavModule,
     MatListModule,
+    MatGridListModule,
     AvatarModule,
     Ng2SearchPipeModule,
     AppRoutingModule //needs to stay at the bottom

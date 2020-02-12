@@ -1,0 +1,36 @@
+.profile-container {
+    margin-top: 40px;
+}
+
+.info-container {
+    width: 100%;
+}
+
+.info-margin {
+    margin-top: 30px;
+}
+
+.info-cell {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.game-cell {
+    border: 1px solid #000000;
+    border-radius: 6px;
+}
+
+.game-left {
+    float: left;
+}
+
+.game-right {
+    float: right;
+}
+
+.add-cell {
+    border: 1px solid #9CFFDB;
+    border-radius: 6px;
+}
+

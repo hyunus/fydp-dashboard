@@ -5,16 +5,16 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css', '../home/home.component.css']
 })
 export class ProfileComponent implements OnInit {
 
   patient: string;
-  OT: string;
-  profile: Object;
+  profile = {};
+  user: Object;
 
   constructor(private apiService: ApiService, private route: ActivatedRoute) {
-    this.OT = JSON.parse(localStorage.getItem('currentUser'))['code']
+    this.user = JSON.parse(localStorage.getItem('currentUser'));
    }
 
   ngOnInit() {
@@ -25,7 +25,7 @@ export class ProfileComponent implements OnInit {
     })
 
     //get patient profile from backend
-    this.apiService.getProfile(this.OT, this.patient).subscribe((response) => {
+    this.apiService.getProfile(this.user['code'], this.patient).subscribe((response) => {
       this.profile = response['records'][0]
       console.log(this.profile)
     })

@@ -1,1 +1,73 @@
-<p>profile works!</p>
+<mat-sidenav-container class="sidenav-container">
+    <!-- side nav -->
+    <mat-sidenav mode="side" opened>
+        <div class="list-container">
+            <div class="main-text navtitle">
+                <a href='/' style="text-decoration: none;">pluto care</a>
+            </div>
+            <mat-nav-list class="body-text">
+                <a mat-list-item>Games</a>
+                <a mat-list-item href="/#patients">Patients</a>
+                <a mat-list-item>Settings</a>
+                <a mat-list-item>FAQ</a>
+            </mat-nav-list>
+        </div>
+        <div class="name-container body-text">
+            <ngx-avatar class="face-container" name="{{user['first name']}} {{user['last name']}}"></ngx-avatar>
+            {{user['first name']}} {{user['last name']}}
+        </div>
+    </mat-sidenav>
+    <!-- main content -->
+    <mat-sidenav-content class="background">
+        <mat-card>
+            <!-- Patient Profile Section -->
+            <mat-card-title>PATIENT PROFILE</mat-card-title>
+            <div class="profile-container">
+                <div class="body-text">PATIENT INFORMATION</div>
+                <table class="info-container info-margin">
+                    <tr>
+                        <td>
+                            <div class="body-text info-cell">
+                                <ngx-avatar class="face-container" name="{{profile['firstName']}} {{profile['lastName']}}"></ngx-avatar> 
+                                {{profile['firstName']}} {{profile['lastName']}}
+                            </div>
+                            <div class="info-margin">
+                                <mat-chip-list>
+                                    <mat-chip>Bilateral Coordination</mat-chip>
+                                    <mat-chip>Balance</mat-chip>
+                                </mat-chip-list>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="body-text">
+                                Pluto Code: {{profile['uid']}}
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <!-- Adherence Graph -->
+            <!-- Homework Section -->
+            <div class="info-margin">PROGRAMS</div>
+            <mat-grid-list cols="2" rowHeight="250px" gutterSize="45px" class="info-margin">
+                <mat-grid-tile colspan="1" rowspan="1" class="game-cell"> 
+                    <div class="game-left">
+                        <img src="/assets/game.png">
+                    </div>
+                    <div class="game-right">
+                        <div class="body-text">
+                            Fantastic Contraption
+                            </div>
+                            <mat-chip-list>
+                                <mat-chip>Bilateral Coordination</mat-chip>
+                                <mat-chip>School-Age</mat-chip>
+                            </mat-chip-list>
+                    </div>
+                </mat-grid-tile>
+                <mat-grid-tile colspan="1" rowspan="1" class="add-cell">
+                    <mat-icon>add_circle</mat-icon>
+                    <h1>ADD PROGRAM</h1>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </mat-card>
+    </mat-sidenav-content>
