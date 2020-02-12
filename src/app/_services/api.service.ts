@@ -26,4 +26,9 @@ export class ApiService {
     let url = this.API_URL+`/read_homework?ot=${OT}&uid=${patient}`
     return this.httpClient.get(url)
   }
+
+  public getGamelist() {
+    let url = this.API_URL+'/read_gamelist'
+    return this.httpClient.get(url)
+  }
 }

@@ -50,20 +50,23 @@
             <!-- Homework Section -->
             <div class="info-margin">PROGRAMS</div>
             <mat-grid-list cols="2" rowHeight="250px" gutterSize="45px" class="info-margin">
-                <mat-grid-tile colspan="1" rowspan="1" class="game-cell"> 
-                    <div class="game-left">
-                        <img src="/assets/game.png">
-                    </div>
-                    <div class="game-right">
-                        <div class="body-text">
-                            Fantastic Contraption
-                            </div>
-                            <mat-chip-list>
-                                <mat-chip>Bilateral Coordination</mat-chip>
-                                <mat-chip>School-Age</mat-chip>
-                            </mat-chip-list>
-                    </div>
-                </mat-grid-tile>
+                <div *ngFor="let game of gameTiles">
+                    <mat-grid-tile colspan="1" rowspan="1" class="game-cell"> 
+                        <div class="game-left">
+                            <img src="/assets/game.png">
+                        </div>
+                        <div class="game-right">
+                            <div class="body-text">
+                                {{ game['game_title'].replace('_', ' ') }} 
+                                </div>
+                                <mat-chip-list>
+                                    <div *ngFor="let tag of game['tags']">
+                                        <mat-chip>{{ tag }}</mat-chip>
+                                    </div>
+                                </mat-chip-list>
+                        </div>
+                    </mat-grid-tile>
+                </div>
                 <mat-grid-tile colspan="1" rowspan="1" class="add-cell">
                     <mat-icon>add_circle</mat-icon>
                     <h1>ADD PROGRAM</h1>
