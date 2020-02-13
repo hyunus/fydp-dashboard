@@ -31,4 +31,9 @@ export class ApiService {
     let url = this.API_URL+'/read_gamelist'
     return this.httpClient.get(url)
   }
+
+  public getAdherence(ot: string, game: string, patient: string) {
+    let url = this.API_URL+`/read_adherence?ot=${ot}&game=${game}&uid=${patient}`
+    return this.httpClient.get(url)
+  }
 }
