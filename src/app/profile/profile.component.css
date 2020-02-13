@@ -16,6 +16,13 @@
     align-items: center;
 }
 
+.chart-cell {
+    display: block;
+    margin-top: 30px;
+    height: 300px;
+    width: 850px;
+}
+
 .game-cell {
     border: 1px solid #000000;
     border-radius: 6px;

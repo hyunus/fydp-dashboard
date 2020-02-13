@@ -47,6 +47,21 @@
                 </table>
             </div>
             <!-- Adherence Graph -->
+            <div class="info-margin">
+                ACTIVITY
+            </div>
+            <!-- <ngx-charts-timeline-filter-bar-chart class="chart-cell"
+            [autoScale]="autoScale"
+            [view]="view"
+            [scheme]="colorScheme"
+            [results]="data"
+            [gradient]="gradient"
+            [xAxis]="showXAxis"
+            [yAxis]="showYAxis"
+            [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel">
+            </ngx-charts-timeline-filter-bar-chart> -->
+            <div [chart]="chart" class="chart-cell"></div>
             <!-- Homework Section -->
             <div class="info-margin">PROGRAMS</div>
             <mat-grid-list cols="2" rowHeight="250px" gutterSize="45px" class="info-margin">
@@ -69,7 +84,7 @@
                 </div>
                 <mat-grid-tile colspan="1" rowspan="1" class="add-cell">
                     <mat-icon>add_circle</mat-icon>
-                    <h1>ADD PROGRAM</h1>
+                    <h2>ADD PROGRAM</h2>
                 </mat-grid-tile>
             </mat-grid-list>
         </mat-card>

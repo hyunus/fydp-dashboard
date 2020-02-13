@@ -12,6 +12,10 @@ import {GoogleChartsModule} from 'angular-google-charts';
 import { LoginComponentComponent } from './login-component/login-component.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FormsModule,ReactiveFormsModule } from '@angular/forms'; 
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { TimelineFilterBarChartComponent } from './timeline-chart/timeline-filter-bar-chart.component'
+import { ChartModule } from 'angular-highcharts'
+
 import {   
   MatButtonModule,  
   MatChipsModule,
@@ -45,15 +49,18 @@ import { ProfileComponent } from './profile/profile.component';
     LoginComponentComponent,
     HomeComponent,
     PatientsComponent,
-    ProfileComponent
+    ProfileComponent,
+    TimelineFilterBarChartComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     GoogleChartsModule,
     BrowserAnimationsModule,
+    ChartModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxChartsModule,
     MatButtonModule,  
     MatChipsModule,
     MatMenuModule,  
