@@ -22,7 +22,13 @@ export class ProfileComponent implements OnInit {
 
   chart = new Chart({
     chart: {
-      type: 'column'
+      type: 'column',
+      zoomType: 'x',
+      panning: {
+        enabled: true,
+        type: 'x'
+      },
+      panKey: 'shift'
     },
     title: {
       text: ""
@@ -51,15 +57,15 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     //get patient uid from query params
-    //comment
     this.route.queryParams
     .subscribe(params => {
       this.patient = params['id'];
     })
 
     //get total adherence from backend
-    this.apiService.getAdherence(this.user['code'], 'Trail_It', this.patient).subscribe((response) => {
+    this.apiService.getAdherence(this.user['code'], this.patient).subscribe((response) => {
       let records = response['records'];
+      console.log(records);
       if(records.length) {
         //parse records into data array
         var adherence = records.map(function(record) {
@@ -68,11 +74,18 @@ export class ProfileComponent implements OnInit {
         // add adherence data to chart
         this.chart.addSeries({
           type: 'column',
-          name: "Trail It",
+          name: "Sessions",
           data: adherence
         }, true, false)
+
+        //TODO: set extremes as the most recent month
+        // var d = new Date();
+        // this.chart.xAxis[0].setExtremes(
+        // Date.UTC(d.getFullYear(), d.getMonth(), d.getDate() - 30),
+        // Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
       }
     }, error => {
+      //show placeholder for graph
       console.log(error);
     })
 
@@ -84,14 +97,14 @@ export class ProfileComponent implements OnInit {
       this.apiService.getGamelist().subscribe((response2) => {
       this.gameList = response2['records'];
 
-      //assemble game tiles from game list & patient assignments NEEDS TO MOVE TO LOGIC SERVICE
+      //assemble game tiles from game list & patient assignments
       if(this.profile['assignments']) {
         this.profile['assignments'].forEach(element => {
           let game = element['game_title'];
           game = this.gameList.find(i => i.game_title === game);
           this.gameTiles.push(game);
         });
-      }
+        }
       })         
     })
   }

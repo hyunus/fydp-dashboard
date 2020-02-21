@@ -41,6 +41,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { HomeComponent } from './home/home.component';
 import { PatientsComponent } from './patients/patients.component';
 import { ProfileComponent } from './profile/profile.component';
+import { GamesComponent } from './games/games.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { ProfileComponent } from './profile/profile.component';
     HomeComponent,
     PatientsComponent,
     ProfileComponent,
-    TimelineFilterBarChartComponent
+    TimelineFilterBarChartComponent,
+    GamesComponent
   ],
   imports: [
     BrowserModule,

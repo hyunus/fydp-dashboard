@@ -32,8 +32,8 @@ export class ApiService {
     return this.httpClient.get(url)
   }
 
-  public getAdherence(ot: string, game: string, patient: string) {
-    let url = this.API_URL+`/read_adherence?ot=${ot}&game=${game}&uid=${patient}`
+  public getAdherence(ot: string, patient: string) {
+    let url = this.API_URL+`/total_adherence?ot=${ot}&uid=${patient}`
     return this.httpClient.get(url)
   }
 }
