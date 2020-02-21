@@ -1,1 +1,39 @@
-<p>games works!</p>
+<mat-sidenav-container class="sidenav-container">
+    <!-- side nav -->
+    <mat-sidenav mode="side" opened>
+        <div class="list-container">
+            <div class="main-text navtitle">
+                <a href='/' style="text-decoration: none;">pluto care</a>
+            </div>
+            <mat-nav-list class="body-text">
+                <a mat-list-item href="/#games">Games</a>
+                <a mat-list-item href="/#patients">Patients</a>
+                <a mat-list-item>Settings</a>
+                <a mat-list-item>FAQ</a>
+            </mat-nav-list>
+        </div>
+        <div class="name-container body-text">
+            <ngx-avatar class="face-container" name="{{user['first name']}} {{user['last name']}}"></ngx-avatar>
+            {{user['first name']}} {{user['last name']}}
+        </div>
+    </mat-sidenav>
+    <!-- main content -->
+    <mat-sidenav-content class="background">
+        <mat-card>
+            <mat-card-title class="vertical-center">
+                <ngx-avatar class="face-container" name="{{user['first name']}} {{user['last name']}}"></ngx-avatar>
+                Games
+            </mat-card-title>
+            <h3>Recommended for you</h3>
+        <mat-grid-list cols="4" rowHeight="200px" gutterSize="50px">
+            <div *ngFor="let game of gameList">
+                <mat-grid-tile colspan="1" rowspan="1">
+                    <div class="game-cell">
+                        <img src="https://picsum.photos/130" class="game-img" layout-fill>
+                        <p>{{ game['game_title'].replace('_', ' ') }} </p>
+                    </div>
+                </mat-grid-tile>
+            </div>
+        </mat-grid-list>
+        </mat-card>
+    </mat-sidenav-content>

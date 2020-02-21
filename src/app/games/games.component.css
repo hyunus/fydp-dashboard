@@ -1,0 +1,9 @@
+.game-cell {
+    display: flex;
+    flex-direction: column;
+}
+
+.game-img {
+    max-width: 130px;
+    max-height: 130px;
+}
