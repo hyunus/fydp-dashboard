@@ -6,6 +6,7 @@ import { PatientsComponent } from './patients/patients.component'
 import { AuthGuard } from './_helpers/auth.guard';
 import { ProfileComponent } from './profile/profile.component';
 import { GamesComponent } from './games/games.component'
+import { AddProgramComponent } from './add-program/add-program.component'
 
 const routes: Routes = [
   {path: '', component: HomeComponent, canActivate:[AuthGuard]},
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path: 'patients', component: PatientsComponent, canActivate:[AuthGuard]},
   {path: 'profile', component: ProfileComponent, canActivate:[AuthGuard]},
   {path: 'games', component: GamesComponent, canActivate:[AuthGuard]},
+  {path: 'addprogram', component: AddProgramComponent, canActivate:[AuthGuard]},
   {path: '**', redirectTo: ''}
 ];
 

@@ -1,0 +1,40 @@
+<mat-sidenav-container class="sidenav-container">
+    <!-- side nav -->
+    <mat-sidenav mode="side" opened>
+        <div class="list-container">
+            <div class="main-text navtitle">
+                <a href='/' style="text-decoration: none;">pluto care</a>
+            </div>
+            <mat-nav-list class="body-text">
+                <a mat-list-item href="/#games">Games</a>
+                <a mat-list-item href="/#patients">Patients</a>
+                <a mat-list-item>Settings</a>
+                <a mat-list-item>FAQ</a>
+            </mat-nav-list>
+        </div>
+        <div class="name-container body-text">
+            <ngx-avatar class="face-container" name="{{user['first name']}} {{user['last name']}}"></ngx-avatar>
+            {{user['first name']}} {{user['last name']}}
+        </div>
+    </mat-sidenav>
+    <!-- main content -->
+    <mat-sidenav-content class="background">
+        <mat-card>
+            <mat-card-title>ADD PROGRAM</mat-card-title>
+            <table class="info-container info-margin">
+                <tr>
+                    <td>
+                        <div class="body-text info-cell">
+                            <ngx-avatar class="face-container" name="{{profile['firstName']}} {{profile['lastName']}}"></ngx-avatar> 
+                            {{profile['firstName']}} {{profile['lastName']}}
+                        </div>
+                    </td>
+                    <td>
+                        <div class="body-text">
+                            Pluto Code: {{profile['uid']}}
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </mat-card>
+    </mat-sidenav-content>

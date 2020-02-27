@@ -55,6 +55,10 @@ export class ProfileComponent implements OnInit {
     this.user = JSON.parse(localStorage.getItem('currentUser'));
    }
 
+   goAddProgram() {
+    window.location.href=`/#addprogram?id=${this.patient}`
+   }
+
   ngOnInit() {
     //get patient uid from query params
     this.route.queryParams

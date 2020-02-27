@@ -42,6 +42,7 @@ import { HomeComponent } from './home/home.component';
 import { PatientsComponent } from './patients/patients.component';
 import { ProfileComponent } from './profile/profile.component';
 import { GamesComponent } from './games/games.component';
+import { AddProgramComponent } from './add-program/add-program.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { GamesComponent } from './games/games.component';
     PatientsComponent,
     ProfileComponent,
     TimelineFilterBarChartComponent,
-    GamesComponent
+    GamesComponent,
+    AddProgramComponent
   ],
   imports: [
     BrowserModule,
