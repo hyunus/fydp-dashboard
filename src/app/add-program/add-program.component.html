@@ -21,6 +21,7 @@
     <mat-sidenav-content class="background">
         <mat-card>
             <mat-card-title>ADD PROGRAM</mat-card-title>
+            <!-- Patient Information -->
             <table class="info-container info-margin">
                 <tr>
                     <td>
@@ -36,5 +37,21 @@
                     </td>
                 </tr>
             </table>
+            <!-- GAME SEARCH AND SELECTION -->
+            <!-- search bar -->
+            <mat-form-field class="form-field" appearance="outline">
+                <input  matInput [(ngModel)]="query" placeholder="Search game library">
+            </mat-form-field>
+            <!-- Game List -->
+            <div class=horizontal-scroll>
+                    <div *ngFor="let game of gameList | filter: query">
+                            <div class="game-container game-container-margin">
+                                <img src="https://picsum.photos/130" class="game-img" layout-fill>
+                                <p>{{ game['game_title'].replace('_', ' ') }} </p>
+                            </div>
+                    </div>
+            </div>
+            <!-- Suggested Frequency -->
+            <!-- Email Draft -->
         </mat-card>
     </mat-sidenav-content>

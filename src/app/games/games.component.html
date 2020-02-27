@@ -25,15 +25,15 @@
                 Games
             </mat-card-title>
             <h3>Recommended for you</h3>
-        <mat-grid-list cols="4" rowHeight="200px" gutterSize="50px">
-            <div *ngFor="let game of gameList">
-                <mat-grid-tile colspan="1" rowspan="1">
-                    <div class="game-cell">
-                        <img src="https://picsum.photos/130" class="game-img" layout-fill>
-                        <p>{{ game['game_title'].replace('_', ' ') }} </p>
-                    </div>
-                </mat-grid-tile>
-            </div>
-        </mat-grid-list>
+            <mat-grid-list cols="4" rowHeight="200px" gutterSize="50px">
+                <div *ngFor="let game of gameList">
+                    <mat-grid-tile colspan="1" rowspan="1">
+                        <div class="game-container">
+                            <img src="https://picsum.photos/130" class="game-img" layout-fill>
+                            <p>{{ game['game_title'].replace('_', ' ') }} </p>
+                        </div>
+                    </mat-grid-tile>
+                </div>
+            </mat-grid-list>
         </mat-card>
     </mat-sidenav-content>
