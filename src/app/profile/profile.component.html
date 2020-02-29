@@ -65,7 +65,7 @@
                                 </div>
                                 <mat-chip-list>
                                     <div *ngFor="let tag of game['tags']">
-                                        <mat-chip>{{ tag }}</mat-chip>
+                                        <mat-chip>{{ tag.replace('_', ' ') }}</mat-chip>
                                     </div>
                                 </mat-chip-list>
                         </div>

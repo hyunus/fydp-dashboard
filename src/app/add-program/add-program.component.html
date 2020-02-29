@@ -38,20 +38,133 @@
                 </tr>
             </table>
             <!-- GAME SEARCH AND SELECTION -->
+            <table class="full-field">
+                <tr>
+                    <td>
+                        <h2>CHOOSE A GAME</h2>
+                    </td>
+                    <td *ngIf="selected_game['game_title']!=''">
+                        <h3 (click)="removeSelectedGame()" class="right">Choose a different game</h3>
+                    </td>
+                </tr>
+            </table>
             <!-- search bar -->
-            <mat-form-field class="form-field" appearance="outline">
+            <mat-form-field class="form-field" appearance="outline" *ngIf="selected_game['game_title']==''">
                 <input  matInput [(ngModel)]="query" placeholder="Search game library">
             </mat-form-field>
             <!-- Game List -->
-            <div class=horizontal-scroll>
-                    <div *ngFor="let game of gameList | filter: query">
+            <div class=horizontal-scroll *ngIf="selected_game['game_title']==''">
+                    <div *ngFor="let game of gameList | filter: query" (click)="selectGame(game)">
                             <div class="game-container game-container-margin">
                                 <img src="https://picsum.photos/130" class="game-img" layout-fill>
-                                <p>{{ game['game_title'].replace('_', ' ') }} </p>
+                                <p>{{ game['game_title'] }} </p>
                             </div>
                     </div>
             </div>
-            <!-- Suggested Frequency -->
+            <!-- Selected Game -->
+            <div *ngIf="selected_game['game_title']!=''">
+                <div class="game-container game-container-margin">
+                    <img src="https://picsum.photos/130" class="game-img" layout-fill>
+                    <p>{{ selected_game['game_title'] }} </p>
+                    <mat-chip-list>
+                        <div *ngFor="let tag of selected_game['tags']">
+                            <mat-chip>{{ tag.replace("_", " ") }}</mat-chip>
+                        </div>
+                    </mat-chip-list>
+                </div>
+            </div>
+            <!-- Suggested Frequency Form -->
+            <h2>SUGGESTED FREQUENCY (OPTIONAL)</h2>
+            <form [formGroup]="programForm" (ngSubmit)="assignProgram(programForm.value)">
+                <div class="form-line">
+                    <p>Do </p>
+                    <mat-form-field appearance="outline">
+                        <input type="number" matInput formControlName="no_sessions">
+                    </mat-form-field>
+                    <p> session(s) every </p>
+                    <mat-form-field appearance="outline">
+                        <input type="number" matInput formControlName="no_occurrences">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <select matNativeControl formControlName="cadence">
+                            <option value="days">day(s)</option>
+                            <option value="weeks">week(s)</option>
+                            <option value="months">month(s)</option>
+                        </select>
+                    </mat-form-field>
+                </div>
+                <div class="form-line">
+                    <p>Duration per session </p>
+                    <mat-form-field appearance="outline">
+                        <input type="number" matInput formControlName="no_duration">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <select matNativeControl formControlName="duration">
+                            <option value="seconds">seconds</option>
+                            <option value="mins">mins</option>
+                            <option value="hours">hours</option>
+                        </select>
+                    </mat-form-field>
+                </div>
+                <div class="form-line">
+                    <p>Ends</p>
+                </div>
+                <mat-radio-group formControlName="ends" class="radio-group">
+                    <table>
+                        <tr>
+                            <td>
+                                <mat-radio-button value="never">Never</mat-radio-button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <mat-radio-button value="on">On</mat-radio-button>
+                            </td>
+                            <td>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Choose a date</mat-label>
+                                    <input matInput [min]="min_date" [matDatepicker]="picker" formControlName="on_date">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <mat-radio-button value="after">After</mat-radio-button>
+                            </td>
+                            <td class="form-line">
+                                <mat-form-field appearance="outline">
+                                    <input type="number" matInput formControlName="no_after">
+                                </mat-form-field>
+                                <p> occurrences</p>
+                            </td>
+                        </tr>
+                    </table>
+                </mat-radio-group>
+            </form>
             <!-- Email Draft -->
+            <h2>SEND PROGRAM VIA EMAIL</h2>
+            <mat-form-field appearance="outline" class="full-field">
+                <input disabled matInput [value]="getFromLine()">
+            </mat-form-field>
+            <div class="full-field email">
+                <p>Hello Parent Name,</p>
+                <p>Below is {{profile['firstName']}}'s program via Pluto Care.</p>
+                <div *ngIf="selected_game['game_title']">
+                    <p class="bold">Game</p>
+                    <p>{{ selected_game['game_title'] }}</p>
+                    <p>Pluto Code: {{profile['uid']}}</p>
+                </div>
+                <div *ngIf="programForm.value['no_sessions']&&programForm.value['no_occurrences']&&programForm.value['cadence']&&programForm.value['no_duration']&&programForm.value['duration']">
+                    <p class="bold">Suggested Frequency</p>
+                    <p>{{programForm.value['no_sessions']}}x/{{programForm.value['no_occurrences']}} {{programForm.value['cadence']}}</p>
+                    <p>{{programForm.value['no_duration']}} {{programForm.value['duration']}} per session</p>
+                    <p *ngIf="programForm.value['on_date']">{{today}} to {{programForm.value['on_date'] | date:'dd-MM-yyyy'}}</p>
+                    <p *ngIf="programForm.value['no_after']">{{programForm.value['no_after']}} sessions</p>
+                </div>
+            </div>
+            <br>
+            <br>
         </mat-card>
     </mat-sidenav-content>

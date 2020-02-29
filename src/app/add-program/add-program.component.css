@@ -9,3 +9,31 @@
 .game-container-margin {
     margin-right: 50px;
 }
+
+.form-line {
+    display: flex;
+    flex-direction: row;
+}
+
+.radio-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.full-field {
+    width: 100%
+}
+
+.email {
+    border: 1px solid #e6e6e6;
+    border-radius: 8px;
+    padding-left: 10px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.right {
+    text-align: right;
+}
