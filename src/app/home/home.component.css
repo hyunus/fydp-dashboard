@@ -1,13 +1,11 @@
 .sidenav-container {
-    background: #FFFFFF;
-    border: 1px solid #C4C6D1;
     height: 100vh;
   }
 
 .background {
-  background-color: #faf9f7;
-  padding-top: 70px;
-  padding-left: 70px;
+  background-color: #FFFFFF;
+  padding-top: 30px;
+  padding-left: 30px;
 }
 
 .name-container {
@@ -18,7 +16,7 @@
   width: 100%;
   position: absolute;
   bottom: 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.6);
   font-size: 18px;
 }
 
@@ -31,8 +29,10 @@
 }
 
 mat-sidenav {
+  background-color: #000000;
   width: 20%;
   height: 100vh;
+  color: #FFFFFF;
 }
 
 mat-card {
@@ -40,6 +40,10 @@ mat-card {
   margin-bottom: 30px;
   width: 85%;
   flex-direction: column;
+}
+
+.white {
+  color: #FFFFFF;
 }
 
 .home {
@@ -64,28 +68,18 @@ mat-card {
   align-items: center;
 }
 
-.main-text {
-  font-family: 'DIN Alternate';
-  font-weight: bold;
-}
-
 .body-text {
-  font-family: 'Roboto';
-}
-
-.title {
-  font-size: 56px;
-  margin-bottom: 30px;
-}
-
-.subtitle {
+  font-family: 'Archivo';
   font-size: 20px;
-  margin-bottom: 54px;
+}
+
+h1 {
+  font-family: 'Bungee';
+  font-size: 36px;
+  line-height: 43px;
 }
 
 .navtitle {
-  font-size: 28px;
-  font-weight: bold;
   margin-bottom: 30px;
   margin-top: 40px;
 }

@@ -15,6 +15,7 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { TimelineFilterBarChartComponent } from './timeline-chart/timeline-filter-bar-chart.component'
 import { ChartModule } from 'angular-highcharts'
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 import {   
   MatButtonModule,  
@@ -86,6 +87,7 @@ import { AddProgramComponent } from './add-program/add-program.component';
     MatGridListModule,
     AvatarModule,
     Ng2SearchPipeModule,
+    NgxMatSelectSearchModule,
     AppRoutingModule //needs to stay at the bottom
   ],
   providers: [{
@@ -94,6 +96,7 @@ import { AddProgramComponent } from './add-program/add-program.component';
     useClass: AuthInterceptor,
     multi: true
   }, {
+    //hash routing strategy
     provide: LocationStrategy,
     useClass: HashLocationStrategy,
   }],

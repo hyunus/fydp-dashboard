@@ -6,4 +6,20 @@
     height: 50px;
     width: 50px;
     font-size: 50px;
+    color: #29DD9C;
+}
+
+.avatar {
+    height: 50px;
+    width: 50px;
+}
+
+.list-text {
+    font-family: 'Archivo';
+    font-size: 24px;
+    line-height: 26px;
+}
+
+mat-list-item {
+    margin-bottom: 20px;
 }

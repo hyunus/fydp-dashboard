@@ -2,17 +2,23 @@
     <mat-sidenav mode="side" opened>
         <div class="list-container">
             <div class="main-text navtitle">
-                <a href='/' style="text-decoration: none;">pluto care</a>
+                <a href="/">
+                    <img src='/assets/logo-white.png'>
+                </a>
             </div>
-            <mat-nav-list class="body-text">
-                <a mat-list-item href="/#games">Games</a>
-                <a mat-list-item href="/#patients">Patients</a>
-                <a mat-list-item>Settings</a>
-                <a mat-list-item>FAQ</a>
+            <mat-nav-list>
+                <a mat-list-item href="/#patients" class="body-text white">Clients</a>
+                <mat-divider></mat-divider>
+                <a mat-list-item href="/#games" class="body-text white">Games</a>
+                <mat-divider></mat-divider>
+                <a mat-list-item class="body-text white">Settings</a>
+                <mat-divider></mat-divider>
+                <a mat-list-item class="body-text white">FAQ</a>
+                <mat-divider></mat-divider>
             </mat-nav-list>
         </div>
         <div class="name-container body-text">
-            <mat-icon class="face-container">account_circle</mat-icon>
+            <ngx-avatar class="face-container" name="{{user['first name']}} {{user['last name']}}" bgColor="white" fgColor="black"></ngx-avatar>
             {{user['first name']}} {{user['last name']}}
         </div>
     </mat-sidenav>
@@ -21,14 +27,14 @@
             <table>
                 <tr>
                     <td>
-                        <div class="body-text title">
+                        <h1>
                             Good afternoon, {{user['first name']}}
-                        </div>
+                        </h1>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <div class="body-text subtitle">
+                        <div class="body-text">
                             Welcome to Pluto Care! Start browsing our games or adding your patients 
                             to track their gameplay progress.
                         </div>

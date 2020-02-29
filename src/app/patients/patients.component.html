@@ -3,17 +3,23 @@
     <mat-sidenav mode="side" opened>
         <div class="list-container">
             <div class="main-text navtitle">
-                <a href='/' style="text-decoration: none;">pluto care</a>
+                <a href="/">
+                    <img src='/assets/logo-white.png'>
+                </a>
             </div>
-            <mat-nav-list class="body-text">
-                <a mat-list-item href="/#games">Games</a>
-                <a mat-list-item href="/#patients">Patients</a>
-                <a mat-list-item>Settings</a>
-                <a mat-list-item>FAQ</a>
+            <mat-nav-list>
+                <a mat-list-item href="/#patients" class="body-text white">Clients</a>
+                <mat-divider></mat-divider>
+                <a mat-list-item href="/#games" class="body-text white">Games</a>
+                <mat-divider></mat-divider>
+                <a mat-list-item class="body-text white">Settings</a>
+                <mat-divider></mat-divider>
+                <a mat-list-item class="body-text white">FAQ</a>
+                <mat-divider></mat-divider>
             </mat-nav-list>
         </div>
         <div class="name-container body-text">
-            <ngx-avatar class="face-container" name="{{user['first name']}} {{user['last name']}}"></ngx-avatar>
+            <ngx-avatar class="face-container" name="{{user['first name']}} {{user['last name']}}" bgColor="white" fgColor="black"></ngx-avatar>
             {{user['first name']}} {{user['last name']}}
         </div>
     </mat-sidenav>
@@ -21,46 +27,71 @@
     <mat-sidenav-content class="background">
         <!-- main view -->
         <mat-card *ngIf="!addView">
-            <mat-card-title>Patients</mat-card-title>
-            <mat-card-content>Manage your patient profiles here</mat-card-content>
+            <mat-card-title>
+                <h1>CLIENTS</h1>
+            </mat-card-title>
             <!-- search bar -->
             <mat-form-field class="form-field" appearance="outline">
-                <input  matInput [(ngModel)]="query" placeholder="Search for patient using their name or UID">
+                <input class="body-text"  matInput [(ngModel)]="query" placeholder="Search for a client using their name or Pluto Code">
             </mat-form-field>
             <mat-list>
                 <mat-list-item (click)="toggleView()">
-                    <mat-icon matListAvatar class="add-icon" color="primary">add_circle</mat-icon>
-                    <button mat-button>ADD A PATIENT</button>
+                    <mat-icon matListAvatar class="add-icon">add_circle</mat-icon>
+                    <button mat-button class="list-text">Add a Client</button>
                 </mat-list-item>
             </mat-list>
             <!-- patient list -->
             <mat-nav-list>
-                <mat-list-item *ngFor="let patient of patients | filter: query" (click)="goProfile(patient.uid)">
-                    <ngx-avatar matListAvatar name="{{patient.firstName}} {{patient.lastName}}"></ngx-avatar>
-                    <h2 class="body-text" matLine>{{patient.firstName}} {{patient.lastName}}</h2>
+                <mat-list-item *ngFor="let patient of patients | filter: query" class="list-text vertical-center" (click)="goProfile(patient.uid)">
+                    <ngx-avatar class="avatar" matListAvatar name="{{patient.firstName}} {{patient.lastName}}"></ngx-avatar>
+                    <p class="list-text" matLine>{{patient.firstName}} {{patient.lastName}}</p>
                 </mat-list-item>
             </mat-nav-list>
         </mat-card>
-        <!-- add patient form -->
+        <!-- add client form -->
         <mat-card *ngIf="addView">
-            <mat-card-title>Add a Patient</mat-card-title>
-            <form [formGroup]="patientForm" (ngSubmit)="addPatient(patientForm.value)">
+            <mat-card-title>
+                <h1>ADD A CLIENT</h1>
+            </mat-card-title>
+            <p class="body-text">CLIENT INFORMATION</p>
+            <form [formGroup]="patientForm" (ngSubmit)="addPatient(patientForm.value)" class="body-text">
                 <table>
                     <tr>
                         <td>
                             <mat-form-field appearance="outline" [floatLabel]="'always'">
-                                <mat-label>first name</mat-label>
+                                <mat-label>First Name</mat-label>
                                 <input matInput formControlName="firstName">
                             </mat-form-field>
                         </td>
                         <td>
                             <mat-form-field appearance="outline" [floatLabel]="'always'">
-                                <mat-label>last name</mat-label>
+                                <mat-label>Last Name</mat-label>
                                 <input matInput formControlName="lastName">
                             </mat-form-field>
                         </td>
                     </tr>
+                    <tr>
+                        <td>
+                            <mat-form-field appearance="outline" [floatLabel]="'always'">
+                                <mat-label>Date of Birth</mat-label>
+                                <input matInput [max]="today" [matDatepicker]="picker" formControlName="dob">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                        </td>
+                        <td></td>
+                    </tr>
                 </table>
+                <mat-form-field appearance="outline" [floatLabel]="'always'" class="form-field">
+                    <mat-select [formControl]="tagMultiCtrl" placeholder="Select Therapy Goals" [multiple]="true" #multiSelect>
+                        <ngx-mat-select-search [formControl]="tagMultiFilterCtrl" placeholderLabel="Search Therapy Goals"></ngx-mat-select-search>
+                        <mat-chip-list>
+                            <mat-option *ngFor="let tag of filteredTagsMulti | async" [value]="tag">
+                                <mat-chip>{{tag['goal'].replace("_", " ")}}</mat-chip>
+                            </mat-option>
+                        </mat-chip-list>
+                    </mat-select>
+                </mat-form-field>
                 <table>
                     <tr>
                         <td>
