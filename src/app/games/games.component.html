@@ -3,17 +3,23 @@
     <mat-sidenav mode="side" opened>
         <div class="list-container">
             <div class="main-text navtitle">
-                <a href='/' style="text-decoration: none;">pluto care</a>
+                <a href="/">
+                    <img src='/assets/logo-white.png'>
+                </a>
             </div>
-            <mat-nav-list class="body-text">
-                <a mat-list-item href="/#games">Games</a>
-                <a mat-list-item href="/#patients">Patients</a>
-                <a mat-list-item>Settings</a>
-                <a mat-list-item>FAQ</a>
+            <mat-nav-list>
+                <a mat-list-item href="/#patients" class="body-text white">Clients</a>
+                <mat-divider></mat-divider>
+                <a mat-list-item href="/#games" class="body-text white">Games</a>
+                <mat-divider></mat-divider>
+                <a mat-list-item class="body-text white">Settings</a>
+                <mat-divider></mat-divider>
+                <a mat-list-item class="body-text white">FAQ</a>
+                <mat-divider></mat-divider>
             </mat-nav-list>
         </div>
         <div class="name-container body-text">
-            <ngx-avatar class="face-container" name="{{user['first name']}} {{user['last name']}}"></ngx-avatar>
+            <ngx-avatar class="face-container" name="{{user['first name']}} {{user['last name']}}" bgColor="white" fgColor="black"></ngx-avatar>
             {{user['first name']}} {{user['last name']}}
         </div>
     </mat-sidenav>
@@ -22,15 +28,15 @@
         <mat-card>
             <mat-card-title class="vertical-center">
                 <ngx-avatar class="face-container" name="{{user['first name']}} {{user['last name']}}"></ngx-avatar>
-                Games
+                <h1>Games</h1>
             </mat-card-title>
-            <h3>Recommended for you</h3>
+            <p class="body-text-bigger">Recommended for you</p>
             <mat-grid-list cols="4" rowHeight="200px" gutterSize="50px">
                 <div *ngFor="let game of gameList">
                     <mat-grid-tile colspan="1" rowspan="1">
                         <div class="game-container">
-                            <img src="https://picsum.photos/130" class="game-img" layout-fill>
-                            <p>{{ game['game_title'].replace('_', ' ') }} </p>
+                            <img src="https://picsum.photos/130" class="game-img">
+                            <p class="body-text">{{ game['game_title'].replace('_', ' ') }} </p>
                         </div>
                     </mat-grid-tile>
                 </div>

@@ -78,6 +78,11 @@ mat-card {
   font-size: 16px;
 }
 
+.body-text-bigger {
+  font-family: 'Archivo';
+  font-size: 24px;
+}
+
 h1 {
   font-family: 'Bungee';
   font-size: 36px;

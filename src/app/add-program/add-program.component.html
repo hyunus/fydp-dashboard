@@ -3,29 +3,37 @@
     <mat-sidenav mode="side" opened>
         <div class="list-container">
             <div class="main-text navtitle">
-                <a href='/' style="text-decoration: none;">pluto care</a>
+                <a href="/">
+                    <img src='/assets/logo-white.png'>
+                </a>
             </div>
-            <mat-nav-list class="body-text">
-                <a mat-list-item href="/#games">Games</a>
-                <a mat-list-item href="/#patients">Patients</a>
-                <a mat-list-item>Settings</a>
-                <a mat-list-item>FAQ</a>
+            <mat-nav-list>
+                <a mat-list-item href="/#patients" class="body-text white">Clients</a>
+                <mat-divider></mat-divider>
+                <a mat-list-item href="/#games" class="body-text white">Games</a>
+                <mat-divider></mat-divider>
+                <a mat-list-item class="body-text white">Settings</a>
+                <mat-divider></mat-divider>
+                <a mat-list-item class="body-text white">FAQ</a>
+                <mat-divider></mat-divider>
             </mat-nav-list>
         </div>
         <div class="name-container body-text">
-            <ngx-avatar class="face-container" name="{{user['first name']}} {{user['last name']}}"></ngx-avatar>
+            <ngx-avatar class="face-container" name="{{user['first name']}} {{user['last name']}}" bgColor="white" fgColor="black"></ngx-avatar>
             {{user['first name']}} {{user['last name']}}
         </div>
     </mat-sidenav>
     <!-- main content -->
     <mat-sidenav-content class="background">
         <mat-card>
-            <mat-card-title>ADD PROGRAM</mat-card-title>
+            <mat-card-title>
+                <h1>ASSIGN PROGRAM</h1>
+            </mat-card-title>
             <!-- Patient Information -->
             <table class="info-container info-margin">
                 <tr>
                     <td>
-                        <div class="body-text info-cell">
+                        <div class="body-text-bigger info-cell">
                             <ngx-avatar class="face-container" name="{{profile['firstName']}} {{profile['lastName']}}"></ngx-avatar> 
                             {{profile['firstName']}} {{profile['lastName']}}
                         </div>
@@ -38,26 +46,26 @@
                 </tr>
             </table>
             <!-- GAME SEARCH AND SELECTION -->
-            <table class="full-field">
+            <table class="info-container info-margin">
                 <tr>
                     <td>
-                        <h2>CHOOSE A GAME</h2>
+                        <p class="body-text">CHOOSE A GAME</p>
                     </td>
                     <td *ngIf="selected_game['game_title']!=''">
-                        <h3 (click)="removeSelectedGame()" class="right">Choose a different game</h3>
+                        <p (click)="removeSelectedGame()" class="right body-text">Choose a different game</p>
                     </td>
                 </tr>
             </table>
             <!-- search bar -->
             <mat-form-field class="form-field" appearance="outline" *ngIf="selected_game['game_title']==''">
-                <input  matInput [(ngModel)]="query" placeholder="Search game library">
+                <input matInput [(ngModel)]="query" class="body-text" placeholder="Search game library">
             </mat-form-field>
             <!-- Game List -->
             <div class=horizontal-scroll *ngIf="selected_game['game_title']==''">
                     <div *ngFor="let game of gameList | filter: query" (click)="selectGame(game)">
                             <div class="game-container game-container-margin">
                                 <img src="https://picsum.photos/130" class="game-img" layout-fill>
-                                <p>{{ game['game_title'] }} </p>
+                                <p class="body-text">{{ game['game_title'] }} </p>
                             </div>
                     </div>
             </div>
@@ -65,27 +73,27 @@
             <div *ngIf="selected_game['game_title']!=''">
                 <div class="game-container game-container-margin">
                     <img src="https://picsum.photos/130" class="game-img" layout-fill>
-                    <p>{{ selected_game['game_title'] }} </p>
+                    <p class="body-text">{{ selected_game['game_title'] }} </p>
                     <mat-chip-list>
                         <div *ngFor="let tag of selected_game['tags']">
-                            <mat-chip>{{ tag.replace("_", " ") }}</mat-chip>
+                            <mat-chip class="body-text-smaller">{{ tag.replace("_", " ") }}</mat-chip>
                         </div>
                     </mat-chip-list>
                 </div>
             </div>
             <!-- Suggested Frequency Form -->
-            <h2>SUGGESTED FREQUENCY (OPTIONAL)</h2>
+            <p class="body-text info-margin">SUGGESTED FREQUENCY (OPTIONAL)</p>
             <form [formGroup]="programForm" (ngSubmit)="assignProgram(programForm.value)">
-                <div class="form-line">
+                <div class="form-line body-text">
                     <p>Do </p>
-                    <mat-form-field appearance="outline">
+                    <mat-form-field appearance="outline" class="number-field">
                         <input type="number" matInput formControlName="no_sessions">
                     </mat-form-field>
                     <p> session(s) every </p>
-                    <mat-form-field appearance="outline">
+                    <mat-form-field appearance="outline" class="number-field">
                         <input type="number" matInput formControlName="no_occurrences">
                     </mat-form-field>
-                    <mat-form-field appearance="outline">
+                    <mat-form-field appearance="outline" class="word-field">
                         <select matNativeControl formControlName="cadence">
                             <option value="days">day(s)</option>
                             <option value="weeks">week(s)</option>
@@ -93,12 +101,12 @@
                         </select>
                     </mat-form-field>
                 </div>
-                <div class="form-line">
+                <div class="form-line body-text">
                     <p>Duration per session </p>
-                    <mat-form-field appearance="outline">
+                    <mat-form-field appearance="outline" class="number-field">
                         <input type="number" matInput formControlName="no_duration">
                     </mat-form-field>
-                    <mat-form-field appearance="outline">
+                    <mat-form-field appearance="outline" class="word-field">
                         <select matNativeControl formControlName="duration">
                             <option value="seconds">seconds</option>
                             <option value="mins">mins</option>
@@ -106,11 +114,11 @@
                         </select>
                     </mat-form-field>
                 </div>
-                <div class="form-line">
-                    <p>Ends</p>
-                </div>
-                <mat-radio-group formControlName="ends" class="radio-group">
+                <mat-radio-group formControlName="ends" class="radio-group body-text">
                     <table>
+                        <tr>
+                            <p class="body-text">Ends</p>
+                        </tr>
                         <tr>
                             <td>
                                 <mat-radio-button value="never">Never</mat-radio-button>
@@ -144,11 +152,11 @@
                 </mat-radio-group>
             </form>
             <!-- Email Draft -->
-            <h2>SEND PROGRAM VIA EMAIL</h2>
-            <mat-form-field appearance="outline" class="full-field">
+            <p class="body-text">SEND PROGRAM VIA EMAIL</p>
+            <mat-form-field appearance="outline" class="full-field body-text">
                 <input disabled matInput [value]="getFromLine()">
             </mat-form-field>
-            <div class="full-field email">
+            <div class="full-field email body-text">
                 <p>Hello Parent Name,</p>
                 <p>Below is {{profile['firstName']}}'s program via Pluto Care.</p>
                 <div *ngIf="selected_game['game_title']">

@@ -29,15 +29,44 @@
 }
 
 .game-left {
-    float: left;
+    position: relative;
+    left: 0;
+    height: 100%;
+    width: 30%;
+}
+
+.fill {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden
+}
+.fill img {
+    flex-shrink: 0;
+    min-width: 100%;
+    min-height: 100%
 }
 
 .game-right {
     float: right;
+    padding-left: 10px;
+}
+
+.game-title {
+    font-weight: 500;
 }
 
 .add-cell {
     border: 1px solid #9CFFDB;
     border-radius: 6px;
+}
+
+.add-icon {
+    height: 55px;
+    width: 55px;
+    font-size: 55px;
+    color: #29DD9C;
+    display: flex;
+    flex-direction: column;
 }
 

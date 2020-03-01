@@ -13,15 +13,29 @@
 .form-line {
     display: flex;
     flex-direction: row;
+    line-height: 55px;
 }
 
 .radio-group {
     display: flex;
     flex-direction: column;
+    line-height: 55px;
 }
 
 .full-field {
     width: 100%
+}
+
+.number-field {
+    width: 70px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.word-field {
+    width: 95px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .email {
