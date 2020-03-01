@@ -79,17 +79,20 @@ export class PatientsComponent implements OnInit, AfterViewInit, OnDestroy {
    }
 
    addPatient(form:Object) {
-      // this.apiService.addPatient(form, this.user['code']).subscribe((response) => {
-      //   this.patients = response['records'];
-      //   this.toggleView();
-      // },
-      // error => {
-      //   console.log(error);
-      // })
+     //format data for posting
       form['goals'] = this.tagMultiCtrl.value.map((tag:Object) => {
         return tag['goal']
-      });
-      console.log(form)
+      }).toString();
+      form['dob'] = form['dob'].valueOf().toString()
+
+      //post data
+      this.apiService.addPatient(form, this.user['code']).subscribe((response) => {
+        this.patients = response['records'];
+        this.toggleView();
+      },
+      error => {
+        console.log(error);
+      })
    }
 
    getPatients() {
