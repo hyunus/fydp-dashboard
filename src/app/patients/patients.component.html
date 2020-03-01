@@ -82,7 +82,9 @@
                         <td></td>
                     </tr>
                 </table>
+                <!-- Search and Select Therapy Goals -->
                 <mat-form-field appearance="outline" [floatLabel]="'always'" class="form-field">
+                    <mat-label>Therapy Goals</mat-label>
                     <mat-select [formControl]="tagMultiCtrl" placeholder="Select Therapy Goals" [multiple]="true" #multiSelect>
                         <ngx-mat-select-search [formControl]="tagMultiFilterCtrl" placeholderLabel="Search Therapy Goals"></ngx-mat-select-search>
                         <mat-chip-list>
@@ -95,51 +97,54 @@
                 <table>
                     <tr>
                         <td>
-                            <mat-card-content>Contact Information</mat-card-content>
-                            <mat-card-content>Email addresses listed below will be used to send the games to the child or caretaker’s devices</mat-card-content>
+                            <p class="body-text">CONTACT INFORMATION</p>
+                            <p class="body-text-smaller">
+                                All forms of electronic communication via Pluto Care such as assigned 
+                                <br>
+                                game programs for the client will be sent to the named recipient and 
+                                <br>
+                                email address below.
+                            </p>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <mat-form-field class="form-field" appearance="outline" [floatLabel]="'always'">
-                                <mat-label>email address</mat-label>
-                                <input matInput formControlName="email">
+                                <mat-label>Recipient's Full Name</mat-label>
+                                <input matInput formControlName="recipient_name">
                             </mat-form-field>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <mat-form-field class="form-field" appearance="outline" [floatLabel]="'always'">
-                                <mat-label>parent email address</mat-label>
-                                <input matInput formControlName="parentEmail">
+                                <mat-label>Recipient's Email Address</mat-label>
+                                <input matInput formControlName="recipient_email">
                             </mat-form-field>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <mat-card-content>Clinical Information</mat-card-content>
-                            <mat-card-content>[Something about how it will be used ie trends, visualizations; depersonalizd for researchers]</mat-card-content>
+                            <p class="body-text">CONSENT</p>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <mat-form-field class="form-field" appearance="outline" [floatLabel]="'always'">
-                                <mat-label>Conditions</mat-label>
-                                <input matInput formControlName="conditions">
-                            </mat-form-field>
+                            <mat-checkbox class="body-text-smaller" formControlName="consent">
+                                The client and/or a legal caretaker consents to having this 
+                                <br>
+                                information saved on the occupational therapist’s account for 
+                                <br>
+                                treatment purposes only. Other uses of this data such as for 
+                                <br>
+                                research ensures that it will be anonymyzed.
+                            </mat-checkbox>
                         </td>
                     </tr>
+                    <br>
                     <tr>
                         <td>
-                            <mat-form-field class="form-field" appearance="outline" [floatLabel]="'always'">
-                                <mat-label>Goals</mat-label>
-                                <input matInput formControlName="goals">
-                            </mat-form-field>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <button mat-button [disabled]="!patientForm.valid">ADD PATIENT</button>
+                            <button mat-flat-button class="body-text button-background" [disabled]="!patientForm.valid">ADD CLIENT</button>
                         </td>
                     </tr>
                 </table>

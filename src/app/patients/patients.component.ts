@@ -48,10 +48,9 @@ export class PatientsComponent implements OnInit, AfterViewInit, OnDestroy {
   firstName: string="";
   lastName: string="";
   dob: Date;
-  email: string="";
-  parentEmail: string="";
-  conditions: string="";
-  goals: string="";
+  recipient_name: string="";
+  recipient_email: string="";
+  consent: Boolean;
 
   //patient list 
   patients: Array<Object>=[];
@@ -69,10 +68,9 @@ export class PatientsComponent implements OnInit, AfterViewInit, OnDestroy {
       'firstName': [null, Validators.required],
       'lastName': [null, Validators.required],
       'dob': [null, Validators.required],
-      'email': [null, Validators.email],
-      'parentEmail': [null, Validators.compose([Validators.required, Validators.email])],
-      'conditions': [null, Validators.required],
-      'goals': [null, Validators.required],
+      'recipient_name': [null, Validators.required],
+      'recipient_email': [null, Validators.compose([Validators.required, Validators.email])],
+      'consent': [null, Validators.required]
     })
    }
 
@@ -81,13 +79,17 @@ export class PatientsComponent implements OnInit, AfterViewInit, OnDestroy {
    }
 
    addPatient(form:Object) {
-      this.apiService.addPatient(form, this.user['code']).subscribe((response) => {
-        this.patients = response['records'];
-        this.toggleView();
-      },
-      error => {
-        console.log(error);
-      })
+      // this.apiService.addPatient(form, this.user['code']).subscribe((response) => {
+      //   this.patients = response['records'];
+      //   this.toggleView();
+      // },
+      // error => {
+      //   console.log(error);
+      // })
+      form['goals'] = this.tagMultiCtrl.value.map((tag:Object) => {
+        return tag['goal']
+      });
+      console.log(form)
    }
 
    getPatients() {
@@ -120,6 +122,8 @@ export class PatientsComponent implements OnInit, AfterViewInit, OnDestroy {
       });
 
   }
+
+  //everything below supports the search and select component
 
   ngAfterViewInit() {
     this.setInitialValue();

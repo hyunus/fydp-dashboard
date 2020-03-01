@@ -20,6 +20,7 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import {   
   MatButtonModule,  
   MatChipsModule,
+  MatCheckboxModule,
   MatMenuModule,  
   MatToolbarModule,  
   MatIconModule,  
@@ -68,6 +69,7 @@ import { AddProgramComponent } from './add-program/add-program.component';
     NgxChartsModule,
     MatButtonModule,  
     MatChipsModule,
+    MatCheckboxModule,
     MatMenuModule,  
     MatToolbarModule,  
     MatIconModule,  
