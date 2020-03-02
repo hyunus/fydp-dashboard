@@ -96,6 +96,7 @@ export class ProfileComponent implements OnInit {
     //get patient profile from backend
     this.apiService.getProfile(this.user['code'], this.patient).subscribe((response) => {
       this.profile = response['records'][0];
+      this.profile['goals'] = this.profile['goals'].split(",")
 
       //get game list from backend
       this.apiService.getGamelist().subscribe((response2) => {

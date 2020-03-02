@@ -49,8 +49,7 @@
                 </table>
                 <div class="info-margin">
                     <mat-chip-list>
-                        <mat-chip class="body-text">Bilateral Coordination</mat-chip>
-                        <mat-chip class="body-text">Balance</mat-chip>
+                        <mat-chip *ngFor="let tag of profile['goals']" class="body-text">{{tag.replace('_', ' ')}}</mat-chip>
                     </mat-chip-list>
                 </div>
             </div>
