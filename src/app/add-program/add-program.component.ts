@@ -86,7 +86,8 @@ export class AddProgramComponent implements OnInit {
   }
 
   getFromLine() {
-    let from = `To: Parent Name (${this.profile['parentEmail']})`;
+    console.log(this.profile);
+    let from = `To: ${this.profile['recipient_name']} (${this.profile['recipient_email']})`;
     return from;
   }
 

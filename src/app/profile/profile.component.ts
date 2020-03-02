@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../_services/api.service';
 import { ActivatedRoute } from '@angular/router';
 import { Chart } from 'angular-highcharts';
-
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css', '../home/home.component.css']
+  styleUrls: ['./profile.component.css', '../home/home.component.css'],
+  providers: [DatePipe]
 })
 export class ProfileComponent implements OnInit {
 
@@ -17,6 +18,7 @@ export class ProfileComponent implements OnInit {
   gameList = [];
   gameTiles = [];
   adherence = [];
+  today: string;
 
   //chart options
 
@@ -51,8 +53,12 @@ export class ProfileComponent implements OnInit {
     }
   })
 
-  constructor(private apiService: ApiService, private route: ActivatedRoute) {
+  constructor(
+    private apiService: ApiService, 
+    private route: ActivatedRoute,
+    private datePipe: DatePipe) {
     this.user = JSON.parse(localStorage.getItem('currentUser'));
+    this.today = this.datePipe.transform(new Date(), 'dd-MM-yyyy');
    }
 
    goAddProgram() {
@@ -97,20 +103,27 @@ export class ProfileComponent implements OnInit {
     this.apiService.getProfile(this.user['code'], this.patient).subscribe((response) => {
       this.profile = response['records'][0];
       this.profile['goals'] = this.profile['goals'].split(",")
-      console.log(this.profile);
+      this.profile['assignments'].forEach((assign) => {
+        assign['homework'] = JSON.parse(assign['homework'])
+      });
 
       //get game list from backend
       this.apiService.getGamelist().subscribe((response2) => {
       this.gameList = response2['records'];
+      
 
       //assemble game tiles from game list & patient assignments
       if(this.profile['assignments']) {
         this.profile['assignments'].forEach(element => {
           let game = element['game_title'];
           game = this.gameList.find(i => i.game_title === game);
+          game['homework'] = element['homework'] //add homework to game tile
           this.gameTiles.push(game);
         });
-        console.log(this.gameTiles)
+        this.gameTiles.forEach((game) => {
+          game['game_title'] = game['game_title'].replace(/_/g, ' '); //replace underscore with space
+        });
+        console.log(this.gameTiles);
         }
       })         
     })

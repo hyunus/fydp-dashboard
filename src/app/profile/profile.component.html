@@ -69,12 +69,18 @@
                         <div class="game-right">
                             <div class="body-text-bigger game-title">
                                 {{ game['game_title'].replace('_', ' ') }} 
+                            </div>
+                            <mat-chip-list>
+                                <div *ngFor="let tag of game['tags']">
+                                    <mat-chip class="body-text-smaller">{{ tag.replace('_', ' ') }}</mat-chip>
                                 </div>
-                                <mat-chip-list>
-                                    <div *ngFor="let tag of game['tags']">
-                                        <mat-chip class="body-text-smaller">{{ tag.replace('_', ' ') }}</mat-chip>
-                                    </div>
-                                </mat-chip-list>
+                            </mat-chip-list>
+                            <div class="body-text-smaller">
+                                <p>{{game['homework']['no_sessions']}}x/{{game['homework']['no_occurrences']}} {{game['homework']['cadence']}}</p>
+                                <p>{{game['homework']['no_duration']}} {{game['homework']['duration']}} per session</p>
+                                <p *ngIf="game['homework']['on_date']">{{today}} to {{game['homework']['on_date'] | date:'dd-MM-yyyy'}}</p>
+                                <p *ngIf="game['homework']['no_after']">{{game['homework']['no_after']}} sessions</p>
+                            </div>
                         </div>
                     </mat-grid-tile>
                 </div>

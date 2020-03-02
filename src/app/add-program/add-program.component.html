@@ -156,7 +156,7 @@
                 <input disabled matInput [value]="getFromLine()">
             </mat-form-field>
             <div class="full-field email body-text">
-                <p>Hello Parent Name,</p>
+                <p>Hello {{profile['recipient_name']}},</p>
                 <p>Below is {{profile['firstName']}}'s program via Pluto Care.</p>
                 <div *ngIf="selected_game['game_title']">
                     <p class="bold">Game</p>
