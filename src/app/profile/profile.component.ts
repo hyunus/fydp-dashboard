@@ -97,6 +97,7 @@ export class ProfileComponent implements OnInit {
     this.apiService.getProfile(this.user['code'], this.patient).subscribe((response) => {
       this.profile = response['records'][0];
       this.profile['goals'] = this.profile['goals'].split(",")
+      console.log(this.profile);
 
       //get game list from backend
       this.apiService.getGamelist().subscribe((response2) => {
@@ -109,6 +110,7 @@ export class ProfileComponent implements OnInit {
           game = this.gameList.find(i => i.game_title === game);
           this.gameTiles.push(game);
         });
+        console.log(this.gameTiles)
         }
       })         
     })

@@ -32,8 +32,18 @@ export class ApiService {
     return this.httpClient.get(url)
   }
 
-  public getAdherence(ot: string, patient: string) {
-    let url = this.API_URL+`/total_adherence?ot=${ot}&uid=${patient}`
+  public assignHomework(OT: string, patient: string, homework: Object) {
+    let url = this.API_URL+`/assign_homework?ot=${OT}&uid=${patient}`;
+    return this.httpClient.post(url, homework);
+  }
+
+  public deleteHomework(OT: string, patient: string, game:string) {
+    let url = this.API_URL+`/delete_homework?ot=${OT}&uid=${patient}&game=${game}&task=${"''"}`
+    return this.httpClient.post(url, {})
+  }
+
+  public getAdherence(OT: string, patient: string) {
+    let url = this.API_URL+`/total_adherence?ot=${OT}&uid=${patient}`
     return this.httpClient.get(url)
   }
 }

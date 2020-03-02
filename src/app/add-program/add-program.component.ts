@@ -38,14 +38,14 @@ export class AddProgramComponent implements OnInit {
     private datePipe: DatePipe) {
     this.user = JSON.parse(localStorage.getItem('currentUser'));
     this.programForm = fb.group({
-      'no_sessions': [null, Validators.min(1)],
-      'no_occurrences': [null, Validators.min(1)],
+      'no_sessions': [null, Validators.compose([Validators.required,Validators.min(1)])],
+      'no_occurrences': [null, Validators.compose([Validators.required,Validators.min(1)])],
       'cadence': ["days"],
-      'no_duration': [null, Validators.min(1)],
-      'duration': ["mins"],
-      'ends': ["never"],
+      'no_duration': [null, Validators.compose([Validators.required,Validators.min(1)])],
+      'duration': ["mins", Validators.required],
+      'ends': ["never", Validators.required],
       'on_date': [null],
-      'no_after': [null, Validators.min(1)]
+      'no_after': [null]
     });
     this.min_date = new Date();
     this.today = this.datePipe.transform(new Date(), 'dd-MM-yyyy');
@@ -57,8 +57,21 @@ export class AddProgramComponent implements OnInit {
     };
    }
 
-  assignProgram(form) {
-    console.log(form)
+  assignProgram(form: Object) {
+    //build homework data object
+    let hw_data = {
+      "homework": JSON.stringify(form),
+      "game_title": this.selected_game['game_title'].replace(/ /g, '_'), //restore underscore in game title
+      "task": "",
+      "completed": ""
+    }
+
+    this.apiService.assignHomework(this.user['code'], this.patient, hw_data).subscribe((response) => {
+      console.log(response);
+      window.location.href=`/#profile?id=${this.patient}`
+    }, (error) => {
+      console.log(error)
+    });
   }
 
   selectGame(game: Object) {

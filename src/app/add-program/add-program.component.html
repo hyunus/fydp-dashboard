@@ -82,7 +82,7 @@
                 </div>
             </div>
             <!-- Suggested Frequency Form -->
-            <p class="body-text info-margin">SUGGESTED FREQUENCY (OPTIONAL)</p>
+            <p class="body-text info-margin">SUGGESTED FREQUENCY</p>
             <form [formGroup]="programForm" (ngSubmit)="assignProgram(programForm.value)">
                 <div class="form-line body-text">
                     <p>Do </p>
@@ -95,9 +95,9 @@
                     </mat-form-field>
                     <mat-form-field appearance="outline" class="word-field">
                         <select matNativeControl formControlName="cadence">
-                            <option value="days">day(s)</option>
-                            <option value="weeks">week(s)</option>
-                            <option value="months">month(s)</option>
+                            <option value="days">days</option>
+                            <option value="weeks">weeks</option>
+                            <option value="months">months</option>
                         </select>
                     </mat-form-field>
                 </div>
@@ -150,7 +150,6 @@
                         </tr>
                     </table>
                 </mat-radio-group>
-            </form>
             <!-- Email Draft -->
             <p class="body-text">SEND PROGRAM VIA EMAIL</p>
             <mat-form-field appearance="outline" class="full-field body-text">
@@ -172,6 +171,9 @@
                     <p *ngIf="programForm.value['no_after']">{{programForm.value['no_after']}} sessions</p>
                 </div>
             </div>
+            <br>
+            <button mat-flat-button class="body-text button-background" [disabled]="!programForm.valid||!selected_game">ASSIGN</button>
+            </form>
             <br>
             <br>
         </mat-card>
