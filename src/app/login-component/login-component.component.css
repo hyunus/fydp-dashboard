@@ -12,17 +12,14 @@
 }
 
 .main-text {
-    font-family: 'DIN Alternate';
-    font-weight: bold;
     text-align: center;
 }
 
-.title {
-    font-size: 56px;
-    margin-bottom: 30px;
+.input-width {
+    width: 385px;
 }
 
-.subtitle {
-    font-size: 20px;
-    margin-bottom: 54px;
+.button {
+    width: 215px;
+    height: 70px;
 }

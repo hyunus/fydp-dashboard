@@ -1,15 +1,19 @@
 <div class="center">
-    <div class=" main-text title">pluto care</div>
-    <div class="main-text subtitle">
+    <div class=" main-text title">
+        <img src="/assets/logo-color.png">
+    </div>
+    <br>
+    <div class="body-text main-text">
         Log in with your work email address to start tracking 
         <br>
-        your patient’s outpatient game progress
+        your clients' game exercises
     </div>
+    <br>
     <form [formGroup]="regiForm" (ngSubmit)="onFormSubmit(regiForm.value)">
         <table>
             <tr>
                 <td>
-                    <mat-form-field appearance="outline" [floatLabel]="'always'">
+                    <mat-form-field appearance="outline" [floatLabel]="'always'" class="body-text input-width">
                             <mat-label>email address</mat-label>
                             <input matInput formControlName="email" placeholder="someone@example.com">
                     </mat-form-field>
@@ -22,7 +26,7 @@
             </tr>
             <tr>
                 <td>
-                    <mat-form-field appearance="outline" [floatLabel]="'always'">
+                    <mat-form-field appearance="outline" [floatLabel]="'always'" class="body-text input-width">
                             <mat-label>password</mat-label>
                             <input matInput formControlName="password" type="password" placeholder="password">
                     </mat-form-field>
@@ -35,7 +39,7 @@
             </tr>
             <tr>
                 <td class="content-center">
-                    <button color="primary" mat-flat-button [disabled]="!regiForm.valid">LOG IN</button>
+                    <button class="body-text button" color="primary" mat-flat-button [disabled]="!regiForm.valid">LOG IN</button>
                 </td>
             </tr>
         </table>
