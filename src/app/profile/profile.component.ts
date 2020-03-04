@@ -79,7 +79,6 @@ export class ProfileComponent implements OnInit {
     //get total adherence from backend
     this.apiService.getAdherence(this.user['code'], this.patient).subscribe((response) => {
       let records = response['records'];
-      console.log(records);
       if(records.length) {
         //parse records into data array
         var adherence = records.map(function(record) {
@@ -114,10 +113,12 @@ export class ProfileComponent implements OnInit {
       //get game list from backend
       this.apiService.getGamelist().subscribe((response2) => {
       this.gameList = response2['records'];
+      console.log(this.gameList)
       
 
       //assemble game tiles from game list & patient assignments
-      if(this.profile['assignments']) {
+      console.log(this.profile)
+      if(this.profile['assignments'].length) {
         this.profile['assignments'].forEach(element => {
           let game = element['game_title'];
           game = this.gameList.find(i => i.game_title === game);
