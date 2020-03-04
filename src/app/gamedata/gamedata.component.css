@@ -1,12 +1,11 @@
 .chart-container {
-    display: block;
     height: 300px;
     width: 675px;
 }
 
 .game-container {
     height: 395px;
-    width: 80%;
+    width: 75%;
     border: 1px solid #000000;
     border-radius: 4px;
 }
@@ -21,16 +20,4 @@
     height: 170px;
     width: 100%;
     padding-left: 15px;
-}
-
-.fill {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden
-}
-.fill img {
-    flex-shrink: 0;
-    min-width: 100%;
-    min-height: 100%
 }

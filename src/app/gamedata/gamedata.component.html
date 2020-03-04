@@ -26,7 +26,7 @@
     <!-- main content -->
     <mat-sidenav-content class="background">
         <mat-card>
-            <!-- Patient Profile Section -->
+            <!-- Patient Information -->
             <mat-card-title>
                 <h1>{{ game_title }}</h1>
             </mat-card-title>
@@ -34,9 +34,19 @@
                 <ngx-avatar class="face-container" name="{{profile['firstName']}} {{profile['lastName']}}"></ngx-avatar> 
                 {{profile['firstName']}} {{profile['lastName']}}
             </div>
+            <!-- Performance Graph -->
             <p class="body-text">ACTIVITY</p>
-            <div [chart]="chart" class="chart-container"></div>
+            <div [chart]="chart" class="chart-container" *ngIf="!noData"></div>
+            <!-- No Data placeholder -->
+            <div class="chart-container no-data content-center vertical-center" *ngIf="noData">
+                <p class="body-text">
+                    {{profile['firstName']}} has not started playing this game yet.
+                    <br>
+                    Come back later to see their performance results.
+                </p>
+            </div>
             <br>
+            <!-- About the Game -->
             <p class="body-text">ABOUT THE GAME</p>
             <div class="game-container">
                 <div class="game-image fill">

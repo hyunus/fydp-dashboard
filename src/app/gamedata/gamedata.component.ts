@@ -19,6 +19,7 @@ export class GamedataComponent implements OnInit {
   game_info: {};
   profile: {};
   rainbow: any;
+  noData= false;
 
   //graph options
   chart = new Chart({
@@ -118,6 +119,9 @@ export class GamedataComponent implements OnInit {
             data: performance
           }, true, false)
         }
+      }, (error) => {
+        console.log(error);
+        this.noData = true;
       })
     })
 
