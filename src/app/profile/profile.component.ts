@@ -3,6 +3,7 @@ import { ApiService } from '../_services/api.service';
 import { ActivatedRoute } from '@angular/router';
 import { Chart } from 'angular-highcharts';
 import { DatePipe } from '@angular/common';
+import { _ } from 'underscore';
 
 @Component({
   selector: 'app-profile',
@@ -32,6 +33,7 @@ export class ProfileComponent implements OnInit {
       },
       panKey: 'shift'
     },
+    colors: ["#DD4573", "#3B47B5"],
     title: {
       text: ""
     },
@@ -43,12 +45,18 @@ export class ProfileComponent implements OnInit {
         text: '# of Sessions Played'
       }
     },
+    tooltip: {
+      headerFormat: '',
+      pointFormatter: function() {
+        return 'DATE: ' + new Date(this.x).toString().slice(3, 15) + "<br> GAME: " + this['game_title'] + "<br> SESSIONS: " + this.y
+      }
+    },
     legend: {
-      enabled: false
+      enabled: true
     },
     plotOptions: {
-      series: {
-        color: '#29DD9C'
+      column: {
+        stacking: 'normal'
       }
     }
   })
@@ -79,23 +87,31 @@ export class ProfileComponent implements OnInit {
     //get total adherence from backend
     this.apiService.getAdherence(this.user['code'], this.patient).subscribe((response) => {
       let records = response['records'];
+      console.log(records)
       if(records.length) {
         //parse records into data array
         var adherence = records.map(function(record) {
-          return [Date.parse(record['created']), Number(record['count'])]
+          return {
+            name: records.indexOf(record),
+            x: Date.parse(record['created']),
+            y: Number(record['count']),
+            game_title: record['game_title']
+          }
         });
-        // add adherence data to chart
-        this.chart.addSeries({
-          type: 'column',
-          name: "Sessions",
-          data: adherence
-        }, true, false)
 
-        //TODO: set extremes as the most recent month
-        // var d = new Date();
-        // this.chart.xAxis[0].setExtremes(
-        // Date.UTC(d.getFullYear(), d.getMonth(), d.getDate() - 30),
-        // Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+        console.log(adherence)
+        //separate data by game
+        let groups = _.groupBy(adherence, "game_title")
+        for (var prop in groups) {
+          if (Object.prototype.hasOwnProperty.call(groups, prop)) {
+            // add adherence data to chart
+            this.chart.addSeries({
+              type: 'column',
+              name: groups[prop][0]['game_title'].replace(/_/g, ' '),
+              data: groups[prop]
+            }, true, false)
+          }
+      }
       }
     }, error => {
       //show placeholder for graph
@@ -125,7 +141,6 @@ export class ProfileComponent implements OnInit {
         this.gameTiles.forEach((game) => {
           game['game_title'] = game['game_title'].replace(/_/g, ' '); //replace underscore with space
         });
-        console.log(this.gameTiles);
         }
       })         
     })

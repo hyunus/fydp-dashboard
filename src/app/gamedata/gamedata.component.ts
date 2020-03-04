@@ -44,10 +44,6 @@ export class GamedataComponent implements OnInit {
         text: 'Level Achieved'
       }
     },
-    colorAxis: {
-      minColor: "rgba(0, 0, 0, 0.1)",
-      maxColor: "#DD4573"
-    },
     legend: {
       enabled: false
     },
