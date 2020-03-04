@@ -112,12 +112,9 @@ export class ProfileComponent implements OnInit {
 
       //get game list from backend
       this.apiService.getGamelist().subscribe((response2) => {
-      this.gameList = response2['records'];
-      console.log(this.gameList)
-      
+      this.gameList = response2['records'];      
 
       //assemble game tiles from game list & patient assignments
-      console.log(this.profile)
       if(this.profile['assignments'].length) {
         this.profile['assignments'].forEach(element => {
           let game = element['game_title'];

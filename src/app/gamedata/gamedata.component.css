@@ -3,3 +3,34 @@
     height: 300px;
     width: 650px;
 }
+
+.game-container {
+    height: 395px;
+    width: 80%;
+    border: 1px solid #000000;
+    border-radius: 4px;
+}
+
+.game-image {
+    height: 225px;
+    width: 100%;
+    border-bottom: 1px solid #000000;
+}
+
+.game-description {
+    height: 170px;
+    width: 100%;
+    padding-left: 15px;
+}
+
+.fill {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden
+}
+.fill img {
+    flex-shrink: 0;
+    min-width: 100%;
+    min-height: 100%
+}

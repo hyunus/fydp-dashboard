@@ -16,6 +16,7 @@ export class GamedataComponent implements OnInit {
   user: Object;
   patient: string;
   game_title: string;
+  game_info: {};
   profile: {};
   rainbow: any;
 
@@ -80,10 +81,11 @@ export class GamedataComponent implements OnInit {
   //function to get color for data point based on percentage accuracy
   getColor(number: number) {
     number = number * 10;
-    number = Math.round(number / 10) * 10
+    number = Math.round(number)
     if  (!number) {
       number = 1;
     }
+    console.log(number)
     return '#' + this.rainbow.colorAt(number);
   }
 
@@ -121,6 +123,13 @@ export class GamedataComponent implements OnInit {
           }, true, false)
         }
       })
+    })
+
+    //read gamelist and get data for this game
+    this.apiService.getGamelist().subscribe((response) => {
+      console.log(response)
+      this.game_info = response['records'].find(i => i.game_title === this.game_title.replace(/ /g, '_'));
+      console.log(this.game_info)
     })
   }
 

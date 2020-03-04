@@ -36,6 +36,25 @@
             </div>
             <p class="body-text">ACTIVITY</p>
             <div [chart]="chart" class="chart-container"></div>
+            <br>
+            <p class="body-text">ABOUT THE GAME</p>
+            <div class="game-container">
+                <div class="game-image fill">
+                    <img src="https://picsum.photos/810/225">
+                </div>
+                <div class="game-description">
+                    <p class="body-text-bigger">{{game_title}}</p>
+                    <mat-chip-list>
+                        <mat-chip>Example tag</mat-chip>
+                        <div *ngFor="let tag of game_info['tags']">
+                            <mat-chip class="body-text-smaller">{{ tag.replace('_', ' ') }}</mat-chip>
+                        </div>
+                    </mat-chip-list>
+                    <p class="body-text-smaller">
+                        {{game_info['description']}}
+                    </p>
+                </div>
+            </div>
         </mat-card>
     </mat-sidenav-content>
 </mat-sidenav-container>
