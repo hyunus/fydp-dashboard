@@ -45,7 +45,6 @@
                 <div class="game-description">
                     <p class="body-text-bigger">{{game_title}}</p>
                     <mat-chip-list>
-                        <mat-chip>Example tag</mat-chip>
                         <div *ngFor="let tag of game_info['tags']">
                             <mat-chip class="body-text-smaller">{{ tag.replace('_', ' ') }}</mat-chip>
                         </div>

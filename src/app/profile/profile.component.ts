@@ -48,7 +48,7 @@ export class ProfileComponent implements OnInit {
     tooltip: {
       headerFormat: '',
       pointFormatter: function() {
-        return 'DATE: ' + new Date(this.x).toString().slice(3, 15) + "<br> GAME: " + this['game_title'] + "<br> SESSIONS: " + this.y
+        return 'DATE: ' + new Date(this.x).toString().slice(3, 15) + "<br> GAME: " + this['game_title'].replace(/_/g, ' ') + "<br> SESSIONS: " + this.y
       }
     },
     legend: {
@@ -92,7 +92,7 @@ export class ProfileComponent implements OnInit {
         //parse records into data array
         var adherence = records.map(function(record) {
           return {
-            name: records.indexOf(record),
+            name: records.indexOf(record)+1,
             x: Date.parse(record['created']),
             y: Number(record['count']),
             game_title: record['game_title']

@@ -54,7 +54,7 @@ export class GamedataComponent implements OnInit {
         },
         tooltip: {
           pointFormatter: function() {
-            return 'ACCURACY: ' + this['accuracy'] + '<br> LEVEL: ' + this.y + '<br> SESSION: ' + this.name
+            return 'ACCURACY: ' + this['accuracy'] + '<br> LEVEL: ' + this.y + '<br> DATE:' + new Date(this['date']).toString().slice(3, 15) + '<br> SESSION: ' + this.name
           },
           headerFormat: ''
         }
@@ -104,7 +104,7 @@ export class GamedataComponent implements OnInit {
           var performance = records.map((record: Object) => {
             let accuracy = (Number(record['successes']) / (Number(record['successes']) + Number(record['failures'])))
             return {
-              name: record['id'],
+              name: records.indexOf(record)+1,
               y: Number(record['levelCount']),
               accuracy: (accuracy*100).toFixed(0).toString() + "%",
               date: record['created'],
