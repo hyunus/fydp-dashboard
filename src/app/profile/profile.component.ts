@@ -20,6 +20,7 @@ export class ProfileComponent implements OnInit {
   gameTiles = [];
   adherence = [];
   today: string;
+  noData = false;
 
   //adherence chart options
 
@@ -116,6 +117,7 @@ export class ProfileComponent implements OnInit {
     }, error => {
       //show placeholder for graph
       console.log(error);
+      this.noData = true;
     })
 
     //get patient profile from backend
