@@ -62,7 +62,7 @@
             <p class="info-margin body-text">PROGRAMS</p>
             <mat-grid-list cols="2" rowHeight="250px" gutterSize="45px" class="info-margin">
                 <div *ngFor="let game of gameTiles">
-                    <mat-grid-tile colspan="1" rowspan="1" class="game-cell"> 
+                    <mat-grid-tile colspan="1" rowspan="1" class="game-cell" (click)="goGameData(game)"> 
                         <div class="game-left fill">
                             <img src="https://picsum.photos/130">
                         </div>

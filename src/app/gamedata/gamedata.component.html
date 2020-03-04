@@ -1,14 +1,35 @@
-<div>Game Data</div>
-
-<google-chart #chart
-[title]="title"
-[type]="type"
-[data]="data"
-[width]="width"
-[height]="height">
-</google-chart>
-
-<div *ngFor="let data of gameData">
-    <p>Successes: {{data.successes}}</p>
-    <p>Failures: {{data.failures}}</p>
-</div>
+<mat-sidenav-container class="sidenav-container">
+    <!-- side nav -->
+    <mat-sidenav mode="side" opened>
+        <div class="list-container">
+            <div class="main-text navtitle">
+                <a href="/">
+                    <img src='/assets/logo-white.png'>
+                </a>
+            </div>
+            <mat-nav-list>
+                <a mat-list-item href="/#patients" class="body-text white">Clients</a>
+                <mat-divider></mat-divider>
+                <a mat-list-item href="/#games" class="body-text white">Games</a>
+                <mat-divider></mat-divider>
+                <a mat-list-item class="body-text white">Settings</a>
+                <mat-divider></mat-divider>
+                <a mat-list-item class="body-text white">FAQ</a>
+                <mat-divider></mat-divider>
+            </mat-nav-list>
+        </div>
+        <div class="name-container body-text">
+            <ngx-avatar class="face-container" name="{{user['first name']}} {{user['last name']}}" bgColor="white" fgColor="black"></ngx-avatar>
+            {{user['first name']}} {{user['last name']}}
+        </div>
+    </mat-sidenav>
+    <!-- main content -->
+    <mat-sidenav-content class="background">
+        <mat-card>
+            <!-- Patient Profile Section -->
+            <mat-card-title>
+                <h1>{{ game_title }}</h1>
+            </mat-card-title>
+        </mat-card>
+    </mat-sidenav-content>
+</mat-sidenav-container>

@@ -46,4 +46,9 @@ export class ApiService {
     let url = this.API_URL+`/total_adherence?ot=${OT}&uid=${patient}`
     return this.httpClient.get(url)
   }
+
+  public getGameData(OT: string, patient: string, game: string) {
+    let url = this.API_URL+`/read_gameplay?ot=${OT}&uid=${patient}&game=${game}`
+    return this.httpClient.get(url);
+  }
 }

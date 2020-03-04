@@ -7,6 +7,7 @@ import { AuthGuard } from './_helpers/auth.guard';
 import { ProfileComponent } from './profile/profile.component';
 import { GamesComponent } from './games/games.component'
 import { AddProgramComponent } from './add-program/add-program.component'
+import { GamedataComponent } from './gamedata/gamedata.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent, canActivate:[AuthGuard]},
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: 'profile', component: ProfileComponent, canActivate:[AuthGuard]},
   {path: 'games', component: GamesComponent, canActivate:[AuthGuard]},
   {path: 'addprogram', component: AddProgramComponent, canActivate:[AuthGuard]},
+  {path: 'gamedata', component: GamedataComponent, canActivate:[AuthGuard]},
   {path: '**', redirectTo: ''}
 ];
 

@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit {
   adherence = [];
   today: string;
 
-  //chart options
+  //adherence chart options
 
   chart = new Chart({
     chart: {
@@ -63,6 +63,10 @@ export class ProfileComponent implements OnInit {
 
    goAddProgram() {
     window.location.href=`/#addprogram?id=${this.patient}`
+   }
+
+   goGameData(game) {
+     window.location.href=`/#gamedata?id=${this.patient}&game=${game['game_title']}`
    }
 
   ngOnInit() {
