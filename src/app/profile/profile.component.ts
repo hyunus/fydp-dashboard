@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Chart } from 'angular-highcharts';
 import { DatePipe } from '@angular/common';
 import { _ } from 'underscore';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-profile',
@@ -65,7 +66,8 @@ export class ProfileComponent implements OnInit {
   constructor(
     private apiService: ApiService, 
     private route: ActivatedRoute,
-    private datePipe: DatePipe) {
+    private datePipe: DatePipe,
+    private _sanitizer: DomSanitizer) {
     this.user = JSON.parse(localStorage.getItem('currentUser'));
     this.today = this.datePipe.transform(new Date(), 'dd-MM-yyyy');
    }
@@ -146,8 +148,11 @@ export class ProfileComponent implements OnInit {
           game['homework'] = element['homework'] //add homework to game tile
           this.gameTiles.push(game);
         });
+        console.log(this.gameTiles)
         this.gameTiles.forEach((game) => {
           game['game_title'] = game['game_title'].replace(/_/g, ' '); //replace underscore with space
+          game['icon'] = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' 
+          + game['icon']);
         });
         }
       })         

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../_services/api.service';
-import { FormBuilder, FormGroup, Validators, FormsModule, NgForm, FormControl } from '@angular/forms'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { DatePipe } from '@angular/common';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-add-program',
@@ -35,7 +36,8 @@ export class AddProgramComponent implements OnInit {
   constructor(private route: ActivatedRoute, 
     private apiService: ApiService,
     private fb: FormBuilder, 
-    private datePipe: DatePipe) {
+    private datePipe: DatePipe,
+    private _sanitizer: DomSanitizer) {
     this.user = JSON.parse(localStorage.getItem('currentUser'));
     this.programForm = fb.group({
       'no_sessions': [null, Validators.compose([Validators.required,Validators.min(1)])],
@@ -115,6 +117,8 @@ export class AddProgramComponent implements OnInit {
       this.gameList = response['records']
       this.gameList.forEach((game) => {
         game['game_title'] = game['game_title'].replace(/_/g, ' ');
+        game['icon'] = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' 
+        + game['icon']);
       })
       console.log(this.gameList)
     }, (error) => {

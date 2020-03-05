@@ -57,7 +57,7 @@
                         <p class="body-text">CHOOSE A GAME</p>
                     </td>
                     <td *ngIf="selected_game['game_title']!=''">
-                        <p (click)="removeSelectedGame()" class="right body-text">Choose a different game</p>
+                        <p (click)="removeSelectedGame()" class="right body-text pointer">Choose a different game</p>
                     </td>
                 </tr>
             </table>
@@ -69,7 +69,7 @@
             <div class=horizontal-scroll *ngIf="selected_game['game_title']==''">
                     <div *ngFor="let game of gameList | filter: query" (click)="selectGame(game)">
                             <div class="game-container game-container-margin">
-                                <img src="https://picsum.photos/130" class="game-img" layout-fill>
+                                <img [src]="game['icon']" class="game-img" layout-fill>
                                 <p class="body-text">{{ game['game_title'] }} </p>
                             </div>
                     </div>
@@ -77,7 +77,7 @@
             <!-- Selected Game -->
             <div *ngIf="selected_game['game_title']!=''">
                 <div class="game-container game-container-margin">
-                    <img src="https://picsum.photos/130" class="game-img" layout-fill>
+                    <img [src]="selected_game['icon']" class="game-img" layout-fill>
                     <p class="body-text">{{ selected_game['game_title'] }} </p>
                     <mat-chip-list>
                         <div *ngFor="let tag of selected_game['tags']">

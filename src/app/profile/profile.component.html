@@ -88,7 +88,7 @@
                 <div *ngFor="let game of gameTiles">
                     <mat-grid-tile colspan="1" rowspan="1" class="game-cell" (click)="goGameData(game)"> 
                         <div class="game-left fill">
-                            <img src="https://picsum.photos/130">
+                            <img [src]="game['icon']">
                         </div>
                         <div class="game-right">
                             <div class="body-text-bigger game-title">
