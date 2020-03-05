@@ -70,6 +70,10 @@ export class ProfileComponent implements OnInit {
     this.today = this.datePipe.transform(new Date(), 'dd-MM-yyyy');
    }
 
+   goPatients() {
+     window.location.href='/#patients'
+   }
+
    goAddProgram() {
     window.location.href=`/#addprogram?id=${this.patient}`
    }

@@ -75,6 +75,10 @@ export class GamedataComponent implements OnInit {
     this.rainbow.setNumberRange(1, 10)
     }
 
+    goProfile() {
+      window.location.href=`/#profile?id=${this.patient}`
+    }
+
   //function to get color for data point based on percentage accuracy
   getColor(number: number) {
     number = number * 10;

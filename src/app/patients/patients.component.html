@@ -51,6 +51,11 @@
         <!-- add client form -->
         <mat-card *ngIf="addView">
             <mat-card-title>
+                <!-- back button -->
+                <div class="back-button vertical-center" (click)="toggleView()">
+                    <mat-icon class="back-arrow">arrow_back</mat-icon>
+                    <p class="body-text">Clients</p>
+                </div>
                 <h1>ADD A CLIENT</h1>
             </mat-card-title>
             <p class="body-text">CLIENT INFORMATION</p>

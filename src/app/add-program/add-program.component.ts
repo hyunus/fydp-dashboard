@@ -57,6 +57,10 @@ export class AddProgramComponent implements OnInit {
     };
    }
 
+   goProfile() {
+    window.location.href=`/#profile?id=${this.patient}`
+  }
+
   assignProgram(form: Object) {
     //build homework data object
     let hw_data = {

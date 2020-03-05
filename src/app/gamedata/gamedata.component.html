@@ -26,6 +26,11 @@
     <!-- main content -->
     <mat-sidenav-content class="background">
         <mat-card>
+            <!-- back button -->
+            <div class="back-button vertical-center" (click)="goProfile()">
+                <mat-icon class="back-arrow">arrow_back</mat-icon>
+                <p class="body-text">Client Profile</p>
+            </div>
             <!-- Patient Information -->
             <mat-card-title>
                 <h1>{{ game_title }}</h1>

@@ -141,11 +141,6 @@ export class PatientsComponent implements OnInit, AfterViewInit, OnDestroy {
     this.filteredTagsMulti
       .pipe(take(1), takeUntil(this._onDestroy))
       .subscribe(() => {
-        // setting the compareWith property to a comparison function
-        // triggers initializing the selection according to the initial value of
-        // the form control (i.e. _initializeSelection())
-        // this needs to be done after the filteredBanks are loaded initially
-        // and after the mat-option elements are available
         this.multiSelect.compareWith = (a: Object, b: Object) => a && b && a['goal'] === b['goal'];
       });
   }
@@ -162,7 +157,7 @@ export class PatientsComponent implements OnInit, AfterViewInit, OnDestroy {
     } else {
       search = search.toLowerCase();
     }
-    // filter the banks
+    // filter the tags
     this.filteredTagsMulti.next(
       this.tags.filter(tag => tag['goal'].toLowerCase().indexOf(search) > -1)
     );
