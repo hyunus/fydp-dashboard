@@ -45,6 +45,7 @@ import { PatientsComponent } from './patients/patients.component';
 import { ProfileComponent } from './profile/profile.component';
 import { GamesComponent } from './games/games.component';
 import { AddProgramComponent } from './add-program/add-program.component';
+import { TagFilterPipe } from './tag-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { AddProgramComponent } from './add-program/add-program.component';
     ProfileComponent,
     TimelineFilterBarChartComponent,
     GamesComponent,
-    AddProgramComponent
+    AddProgramComponent,
+    TagFilterPipe
   ],
   imports: [
     BrowserModule,

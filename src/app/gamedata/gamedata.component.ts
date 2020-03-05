@@ -37,7 +37,7 @@ export class GamedataComponent implements OnInit {
     },
     xAxis: {
       title: {
-        text: "Sessions"
+        text: "Session"
       }
     },
     yAxis: {
@@ -86,7 +86,6 @@ export class GamedataComponent implements OnInit {
     if  (!number) {
       number = 1;
     }
-    console.log(number)
     return '#' + this.rainbow.colorAt(number);
   }
 

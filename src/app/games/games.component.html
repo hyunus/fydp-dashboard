@@ -30,13 +30,36 @@
                 <ngx-avatar class="face-container" name="{{user['first name']}} {{user['last name']}}"></ngx-avatar>
                 <h1>Games</h1>
             </mat-card-title>
-            <p class="body-text-bigger">Recommended for you</p>
+
+            <!-- search field -->
+            <div class="search-container">
+                <mat-form-field class="search-bar body-text" appearance="outline">
+                    <input matInput [(ngModel)]="query" class="body-text" placeholder="Search by title, goals, etc">
+                </mat-form-field>
+                <!-- Search and Select Therapy Goals -->
+                <mat-form-field appearance="outline" class="filter-bar body-text">
+                    <mat-select [formControl]="tagMultiCtrl" placeholder="Filter" [multiple]="true" #multiSelect>
+                        <ngx-mat-select-search [formControl]="tagMultiFilterCtrl" placeholderLabel="Search filters"></ngx-mat-select-search>
+                            <mat-option *ngFor="let tag of filteredTagsMulti | async" [value]="tag">
+                                {{tag.replace("_", " ")}}
+                            </mat-option>
+                    </mat-select>
+                </mat-form-field>                                
+            </div>
+            <mat-chip-list>
+                <div *ngFor="let tag of tagMultiCtrl?.value">
+                    <mat-chip class="body-text-smaller">{{tag.replace("_", " ")}}</mat-chip>
+                </div>
+            </mat-chip-list>
+            <br>
+
+            <!-- games -->
             <mat-grid-list cols="4" rowHeight="200px" gutterSize="50px">
-                <div *ngFor="let game of gameList">
+                <div *ngFor="let game of gameList | filter: query | tagFilter: tagMultiCtrl?.value">
                     <mat-grid-tile colspan="1" rowspan="1">
                         <div class="game-container">
-                            <img src="https://picsum.photos/130" class="game-img">
-                            <p class="body-text">{{ game['game_title'].replace('_', ' ') }} </p>
+                            <img [src]="game['icon']" class="game-img">
+                            <p class="body-text">{{ game['game_title'] }} </p>
                         </div>
                     </mat-grid-tile>
                 </div>

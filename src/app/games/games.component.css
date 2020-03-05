@@ -7,3 +7,17 @@
     max-width: 130px;
     max-height: 130px;
 }
+
+.search-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.search-bar {
+    width: 50%;
+}
+
+.filter-bar {
+    margin-left: 10px;
+    width: 35%;
+}
