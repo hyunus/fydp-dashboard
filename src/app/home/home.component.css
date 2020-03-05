@@ -4,8 +4,6 @@
 
 .background {
   background-color: #FFFFFF;
-  padding-top: 10px;
-  padding-left: 10px;
 }
 
 .name-container {
@@ -36,12 +34,14 @@ mat-sidenav {
 }
 
 mat-card {
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 60px;
+  padding-right: 60px;
   padding-bottom: 30px;
   margin-bottom: 30px;
   width: 85%;
   flex-direction: column;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 .white {

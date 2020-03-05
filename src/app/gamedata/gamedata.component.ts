@@ -31,20 +31,57 @@ export class GamedataComponent implements OnInit {
         enabled: true,
         type: 'x'
       },
-      panKey: 'shift'
+      panKey: 'shift',
+      style: {
+        fontFamily: 'Archivo',
+        fontSize: "20px",
+        color: "rgba(0, 0, 0, 0.87)"
+      }
+    },
+    credits: {
+      enabled: false
     },
     title: {
       text: ""
     },
     xAxis: {
       title: {
-        text: "Session"
-      }
+        text: "Session",
+        style: {
+          color: "#000000"
+        }
+      },
+      labels: {
+        style: {
+          fontSize: "20px",
+          color: "rgba(0, 0, 0, 0.87)"
+        }
+      },
+      lineWidth: 1,
+      lineColor: "black",
+      tickColor: "black",
+      allowDecimals: false
     },
     yAxis: {
       title: {
-        text: 'Level Achieved'
-      }
+        text: 'Level Achieved',
+        align: "high",
+        style: {
+          color: "#000000"
+        }
+      },
+      labels: {
+        style: {
+          fontSize: "20px",
+          color: "rgba(0, 0, 0, 0.87)"
+        }
+      },
+      gridLineColor: 'transparent',
+      lineWidth: 1,
+      lineColor: "black",
+      tickWidth: 1,
+      tickColor: "black",
+      allowDecimals: false,
     },
     legend: {
       enabled: false
@@ -105,6 +142,9 @@ export class GamedataComponent implements OnInit {
 
       this.apiService.getGameData(this.user['code'], this.patient, this.game_title.replace(/ /g, '_')).subscribe((response) => {
         //format data
+        setTimeout(() => {
+          this.spinner.hide()
+        }, 2000)
         let records = response['records'];
         if(records.length) {
           var performance = records.map((record: Object) => {
@@ -117,15 +157,11 @@ export class GamedataComponent implements OnInit {
               color: this.getColor(accuracy)
             }
           })
-          console.log(performance);
           //set chart data
           this.chart.addSeries({
             type: 'scatter',
             data: performance
           }, true, false)
-          setTimeout(() => {
-            this.spinner.hide()
-          }, 2000)
         }
       }, (error) => {
         console.log(error);

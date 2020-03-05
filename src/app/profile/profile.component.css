@@ -6,6 +6,14 @@
     width: 100%;
 }
 
+.forty {
+    width: 40%;
+}
+
+.sixty {
+    width: 60%
+}
+
 .info-margin {
     margin-top: 30px;
 }

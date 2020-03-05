@@ -39,13 +39,13 @@
                 <div class="body-text">PATIENT INFORMATION</div>
                 <table class="info-container info-margin">
                     <tr>
-                        <td>
+                        <td class="sixty">
                             <div class="body-text-bigger info-cell">
                                 <ngx-avatar class="face-container" name="{{profile['firstName']}} {{profile['lastName']}}"></ngx-avatar> 
                                 {{profile['firstName']}} {{profile['lastName']}}
                             </div>
                         </td>
-                        <td>
+                        <td class="forty">
                             <div class="body-text">
                                 <img src="/assets/pluto-icon.png">
                                 Pluto Code: {{profile['uid']}}
@@ -53,12 +53,12 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td class="sixty">
                             <mat-chip-list>
                                 <mat-chip *ngFor="let tag of profile['goals']" class="body-text">{{tag.replace('_', ' ')}}</mat-chip>
                             </mat-chip-list>
                         </td>
-                        <td>
+                        <td class="forty">
                             <p class="body-text contact-name">
                                 <img src="/assets/contact-icon.png">
                                 &nbsp;{{profile['recipient_name']}}

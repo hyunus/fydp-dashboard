@@ -33,19 +33,32 @@ export class ProfileComponent implements OnInit {
         enabled: true,
         type: 'x'
       },
-      panKey: 'shift'
+      panKey: 'shift',
+      style: {
+        fontFamily: 'Archivo'
+      },
+    },
+    credits: {
+      enabled: false
     },
     colors: ["#DD4573", "#3B47B5", "#CA98F1"],
     title: {
       text: ""
     },
     xAxis: {
-      type: 'datetime'
+      type: 'datetime',
+      minorTickLength: 0,
+      tickLength: 0,
     },
     yAxis: {
       title: {
-        text: '# of Sessions Played'
-      }
+        text: 'Sessions',
+        align: "low"
+      },
+      gridLineColor: 'transparent',
+      lineWidth: 0,
+      minorGridLineWidth: 0,
+      allowDecimals: false
     },
     tooltip: {
       headerFormat: '',
@@ -54,12 +67,16 @@ export class ProfileComponent implements OnInit {
       }
     },
     legend: {
-      enabled: true
+      enabled: true,
+      align: "right",
+      itemStyle: {
+        fontSize: "16px"
+      }
     },
     plotOptions: {
       column: {
         stacking: 'normal'
-      }
+      },
     }
   })
 
