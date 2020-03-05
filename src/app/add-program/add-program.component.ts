@@ -74,9 +74,35 @@ export class AddProgramComponent implements OnInit {
 
     this.apiService.assignHomework(this.user['code'], this.patient, hw_data).subscribe((response) => {
       console.log(response);
-      window.location.href=`/#profile?id=${this.patient}`
+      //then send email
+      let email = {
+        email: 'vince.shadbolt@gmail.com',
+        subject: `Pluto Care Program`,
+        body: `Hello ${this.profile["recipient_name"]}, <br> 
+        Below is ${this.profile["firstName"]}'s program via Pluto Care.<br> <br>
+        <strong>Game</strong> <br>
+        ${this.selected_game['game_title']} <br>
+        Pluto Code: ${this.patient} <br> <br>
+        <strong>Suggested Frequency</strong> <br>
+        ${form['no_sessions']} times per ${form['no_occurrences']} ${form['cadence']} <br>
+        ${form['no_duration']} ${form['duration']} per session <br>`
+      }
+      if(form['on_date']) {
+        email['body'] = email ['body'] + `${form['on_date'].toString().slice(3, 15)} to ${new Date().toString().slice(3, 15)} <br> <br>
+        ${this.user['first name']}, OT Reg.`
+      }
+      else if (form['no_after']) {
+        email['body'] = email ['body'] + `${form['no_after']} sessions <br>
+        ${this.user['first name']} ${this.user['last name']}, OT Reg.`
+      }
+      this.apiService.sendEmail(email).subscribe((response) => {
+        console.log(response);
+        window.location.href=`/#profile?id=${this.patient}`        
+      }, (error) => {
+        console.log(error);
+      })
     }, (error) => {
-      console.log(error)
+      console.log(error);
     });
   }
 
@@ -92,7 +118,6 @@ export class AddProgramComponent implements OnInit {
   }
 
   getFromLine() {
-    console.log(this.profile);
     let from = `To: ${this.profile['recipient_name']} (${this.profile['recipient_email']})`;
     return from;
   }

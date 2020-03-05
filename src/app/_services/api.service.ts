@@ -9,6 +9,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 export class ApiService {
 
   API_URL = "https://prd-sql01.ddns.net/dashboard"
+  EMAIL_URL = "https://prd-sql01.ddns.net/email"
 
   constructor(private httpClient: HttpClient) {}
 
@@ -30,6 +31,11 @@ export class ApiService {
   public getGamelist() {
     let url = this.API_URL+'/read_gamelist'
     return this.httpClient.get(url)
+  }
+
+  public sendEmail(email: object) {
+    let url = this.EMAIL_URL + "/send_program"
+    return this.httpClient.post(url, email)
   }
 
   public assignHomework(OT: string, patient: string, homework: Object) {
