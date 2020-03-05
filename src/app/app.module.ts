@@ -47,6 +47,8 @@ import { GamesComponent } from './games/games.component';
 import { AddProgramComponent } from './add-program/add-program.component';
 import { TagFilterPipe } from './tag-filter.pipe';
 
+const avatarColors = ["#CA98F1", "#3B47B5", "#DD4573"]  
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -89,7 +91,9 @@ import { TagFilterPipe } from './tag-filter.pipe';
     MatSidenavModule,
     MatListModule,
     MatGridListModule,
-    AvatarModule,
+    AvatarModule.forRoot({
+      colors: avatarColors
+    }),
     Ng2SearchPipeModule,
     NgxMatSelectSearchModule,
     AppRoutingModule //needs to stay at the bottom

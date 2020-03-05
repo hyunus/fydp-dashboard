@@ -34,7 +34,7 @@ export class ProfileComponent implements OnInit {
       },
       panKey: 'shift'
     },
-    colors: ["#DD4573", "#3B47B5"],
+    colors: ["#DD4573", "#3B47B5", "#CA98F1"],
     title: {
       text: ""
     },
@@ -131,6 +131,8 @@ export class ProfileComponent implements OnInit {
       this.profile['assignments'].forEach((assign) => {
         assign['homework'] = JSON.parse(assign['homework'])
       });
+
+      console.log(this.profile);
 
       //get game list from backend
       this.apiService.getGamelist().subscribe((response2) => {

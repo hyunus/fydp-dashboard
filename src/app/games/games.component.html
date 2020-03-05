@@ -27,7 +27,6 @@
     <mat-sidenav-content class="background">
         <mat-card>
             <mat-card-title class="vertical-center">
-                <ngx-avatar class="face-container" name="{{user['first name']}} {{user['last name']}}"></ngx-avatar>
                 <h1>Games</h1>
             </mat-card-title>
 
@@ -54,12 +53,16 @@
             <br>
 
             <!-- games -->
-            <mat-grid-list cols="4" rowHeight="200px" gutterSize="50px">
+            <mat-grid-list cols="4" rowHeight="225px" gutterSize="40px">
                 <div *ngFor="let game of gameList | filter: query | tagFilter: tagMultiCtrl?.value">
                     <mat-grid-tile colspan="1" rowspan="1">
                         <div class="game-container">
                             <img [src]="game['icon']" class="game-img">
                             <p class="body-text">{{ game['game_title'] }} </p>
+                            <p class="body-text-smaller no-margin">
+                                {{game['tags'][0].replace('_', ' ')}}
+                                <span *ngIf="game['tags'].length > 1"> and {{game['tags'].length - 1}} more</span>
+                            </p>
                         </div>
                     </mat-grid-tile>
                 </div>

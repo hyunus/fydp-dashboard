@@ -47,16 +47,28 @@
                         </td>
                         <td>
                             <div class="body-text">
+                                <img src="/assets/pluto-icon.png">
                                 Pluto Code: {{profile['uid']}}
                             </div>
                         </td>
                     </tr>
+                    <tr>
+                        <td>
+                            <mat-chip-list>
+                                <mat-chip *ngFor="let tag of profile['goals']" class="body-text">{{tag.replace('_', ' ')}}</mat-chip>
+                            </mat-chip-list>
+                        </td>
+                        <td>
+                            <p class="body-text contact-name">
+                                <img src="/assets/contact-icon.png">
+                                &nbsp;{{profile['recipient_name']}}
+                            </p>
+                            <p class="body-text contact-info">
+                                {{profile['recipient_email']}}
+                            </p>
+                        </td>
+                    </tr>
                 </table>
-                <div class="info-margin">
-                    <mat-chip-list>
-                        <mat-chip *ngFor="let tag of profile['goals']" class="body-text">{{tag.replace('_', ' ')}}</mat-chip>
-                    </mat-chip-list>
-                </div>
             </div>
             <!-- Adherence Graph -->
             <p class="info-margin body-text">
@@ -97,9 +109,10 @@
                     </mat-grid-tile>
                 </div>
                 <mat-grid-tile colspan="1" rowspan="1" class="add-cell" (click)=goAddProgram()>
-                    <mat-icon class="add-icon">add_circle</mat-icon>
-                    <br>
-                    <p class='body-text game-title'>Assign Program</p>
+                    <div class="add-flex">
+                        <mat-icon class="add-icon">add_circle</mat-icon>
+                        <p class='body-text game-title'>Assign a Program</p>
+                    </div>
                 </mat-grid-tile>
             </mat-grid-list>
         </mat-card>
