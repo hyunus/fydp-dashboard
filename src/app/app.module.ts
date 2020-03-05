@@ -25,6 +25,7 @@ import {
   MatToolbarModule,  
   MatIconModule,  
   MatCardModule,  
+  MatDialogModule,
   MatFormFieldModule,  
   MatInputModule,  
   MatDatepickerModule,  
@@ -47,6 +48,7 @@ import { GamesComponent } from './games/games.component';
 import { AddProgramComponent } from './add-program/add-program.component';
 import { TagFilterPipe } from './tag-filter.pipe';
 import { NgxSpinnerModule } from 'ngx-spinner'
+import { GameDialog } from './games/games.component'
 
 const avatarColors = ["#CA98F1", "#3B47B5", "#DD4573"]  
 
@@ -61,7 +63,8 @@ const avatarColors = ["#CA98F1", "#3B47B5", "#DD4573"]
     TimelineFilterBarChartComponent,
     GamesComponent,
     AddProgramComponent,
-    TagFilterPipe
+    TagFilterPipe,
+    GameDialog
   ],
   imports: [
     BrowserModule,
@@ -75,6 +78,7 @@ const avatarColors = ["#CA98F1", "#3B47B5", "#DD4573"]
     MatButtonModule,  
     MatChipsModule,
     MatCheckboxModule,
+    MatDialogModule,
     MatMenuModule,  
     MatToolbarModule,  
     MatIconModule,  
@@ -110,6 +114,7 @@ const avatarColors = ["#CA98F1", "#3B47B5", "#DD4573"]
     provide: LocationStrategy,
     useClass: HashLocationStrategy,
   }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [GameDialog]
 })
 export class AppModule { }

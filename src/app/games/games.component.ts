@@ -1,31 +1,33 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild, Inject } from '@angular/core';
 import { ApiService } from '../_services/api.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { FormControl } from '@angular/forms'
 import { ReplaySubject, Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
 import { MatSelect } from '@angular/material/select';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+
+export interface GameData {
+  id: string;
+  game_title: string;
+  image: any;
+  icon: any;
+  tags: Array<string>;
+  description: string;
+  created: string;
+}
 
 @Component({
   selector: 'app-games',
   templateUrl: './games.component.html',
-  styleUrls: ['./games.component.css', '../home/home.component.css']
+  styleUrls: ['./games.component.css', '../home/home.component.css', '../gamedata/gamedata.component.css']
 })
 export class GamesComponent implements OnInit, AfterViewInit, OnDestroy {
 
   user: Object;
   gameList: Array<Object>
   query: string="";
-
-//   protected tags = [
-//     {"goal": "Bilateral_Coordination"},
-//     {"goal": "Balance"},
-//     {"goal": "Visual_Discrimination"},
-//     {"goal": "Handwriting"},
-//     {"goal": "Sensory_Integration"},
-//     {"goal": "Social_Skills"},
-//     {"goal": "Working_Memory"}
-// ]
+  selected_game={};
 
   protected tags = [
     "Attention",
@@ -60,9 +62,28 @@ export class GamesComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
     private apiService: ApiService,
-    private _sanitizer: DomSanitizer
+    private _sanitizer: DomSanitizer,
+    public dialog: MatDialog
     ) { 
     this.user = JSON.parse(localStorage.getItem('currentUser'));
+  }
+
+  selectGame(game: Object) {
+    this.selected_game = game;
+    console.log(this.selected_game)
+    this.openDialog();
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(GameDialog, {
+      // width: '1000px',
+      // height: '600px',
+      data: this.selected_game
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
   ngOnInit() {
@@ -73,6 +94,8 @@ export class GamesComponent implements OnInit, AfterViewInit, OnDestroy {
         record['game_title'] = record['game_title'].replace(/_/g, ' ')
         record['icon'] = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' 
         + record['icon']);
+        record['image'] = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' 
+        + record['image']);
       });
       this.gameList = response['records']
       console.log(this.gameList)
@@ -127,4 +150,21 @@ export class GamesComponent implements OnInit, AfterViewInit, OnDestroy {
       this.tags.filter(tag => tag.toLowerCase().indexOf(search) > -1)
     );
   }
+}
+
+@Component({
+  selector: 'game-dialog',
+  templateUrl: './game-dialog.html',
+  styleUrls: ['../gamedata/gamedata.component.css', '../home/home.component.css']
+})
+export class GameDialog {
+
+  constructor(public dialogRef: 
+    MatDialogRef<GameDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: Object) {}
+
+  onCloseClick(): void {
+    this.dialogRef.close();
+  }
+
 }

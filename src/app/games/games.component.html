@@ -55,7 +55,7 @@
             <!-- games -->
             <mat-grid-list cols="4" rowHeight="225px" gutterSize="40px">
                 <div *ngFor="let game of gameList | filter: query | tagFilter: tagMultiCtrl?.value">
-                    <mat-grid-tile colspan="1" rowspan="1">
+                    <mat-grid-tile colspan="1" rowspan="1" (click)="selectGame(game)">
                         <div class="game-container">
                             <img [src]="game['icon']" class="game-img">
                             <p class="body-text">{{ game['game_title'] }} </p>

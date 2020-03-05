@@ -9,7 +9,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-add-program',
   templateUrl: './add-program.component.html',
-  styleUrls: ['./add-program.component.css', '../home/home.component.css', '../profile/profile.component.css', '../games/games.component.css', '../patients/patients.component.css'],
+  styleUrls: ['./add-program.component.css', '../home/home.component.css', '../profile/profile.component.css', '../games/games.component.css', '../patients/patients.component.css', '../gamedata/gamedata.component.css'],
   providers: [DatePipe]
 })
 export class AddProgramComponent implements OnInit {
@@ -153,6 +153,8 @@ export class AddProgramComponent implements OnInit {
         game['game_title'] = game['game_title'].replace(/_/g, ' ');
         game['icon'] = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' 
         + game['icon']);
+        game['image'] = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' 
+        + game['image']);
       })
       console.log(this.gameList)
     }, (error) => {

@@ -1,0 +1,20 @@
+<div mat-dialog-content>
+    <div class="vertical-center content-center">
+        <div class="play-container">
+            <div class="game-image fill">
+                <img [src]="data['image']">
+            </div>
+            <div class="game-description">
+                <p class="body-text-bigger no-margin">{{data['game_title']}}</p>
+                <mat-chip-list>
+                    <div *ngFor="let tag of data['tags']">
+                        <mat-chip class="body-text-smaller">{{ tag.replace('_', ' ') }}</mat-chip>
+                    </div>
+                </mat-chip-list>
+                <p class="body-text-smaller">
+                    {{data['description']}}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

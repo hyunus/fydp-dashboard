@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Chart } from 'angular-highcharts';
 import { DatePipe } from '@angular/common';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { DomSanitizer } from '@angular/platform-browser';
 declare var Rainbow: any;
 
 @Component({
@@ -105,7 +106,8 @@ export class GamedataComponent implements OnInit {
     private apiService: ApiService,
     private route: ActivatedRoute,
     private datePipe: DatePipe,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private _sanitizer: DomSanitizer
     ) { 
     this.user = JSON.parse(localStorage.getItem('currentUser'));
     //settings for color gradient
@@ -180,6 +182,13 @@ export class GamedataComponent implements OnInit {
     //read gamelist and get data for this game
     this.apiService.getGamelist().subscribe((response) => {
       this.game_info = response['records'].find(i => i.game_title === this.game_title.replace(/ /g, '_'));
+
+      //decode image
+      console.log(this.game_info)
+      this.game_info['image'] = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' 
+      + this.game_info['image']);
+    }, (error) => {
+      console.log(error)
     })
   }
 
