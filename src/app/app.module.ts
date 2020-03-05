@@ -46,6 +46,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { GamesComponent } from './games/games.component';
 import { AddProgramComponent } from './add-program/add-program.component';
 import { TagFilterPipe } from './tag-filter.pipe';
+import { NgxSpinnerModule } from 'ngx-spinner'
 
 const avatarColors = ["#CA98F1", "#3B47B5", "#DD4573"]  
 
@@ -96,6 +97,7 @@ const avatarColors = ["#CA98F1", "#3B47B5", "#DD4573"]
     }),
     Ng2SearchPipeModule,
     NgxMatSelectSearchModule,
+    NgxSpinnerModule,
     AppRoutingModule //needs to stay at the bottom
   ],
   providers: [{

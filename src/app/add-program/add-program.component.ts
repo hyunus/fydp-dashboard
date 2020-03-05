@@ -4,6 +4,7 @@ import { ApiService } from '../_services/api.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { DatePipe } from '@angular/common';
 import { DomSanitizer } from '@angular/platform-browser';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-add-program',
@@ -12,7 +13,6 @@ import { DomSanitizer } from '@angular/platform-browser';
   providers: [DatePipe]
 })
 export class AddProgramComponent implements OnInit {
-
   user: Object;
   patient: string;
   profile: {};
@@ -37,7 +37,8 @@ export class AddProgramComponent implements OnInit {
     private apiService: ApiService,
     private fb: FormBuilder, 
     private datePipe: DatePipe,
-    private _sanitizer: DomSanitizer) {
+    private _sanitizer: DomSanitizer,
+    private spinner: NgxSpinnerService) {
     this.user = JSON.parse(localStorage.getItem('currentUser'));
     this.programForm = fb.group({
       'no_sessions': [null, Validators.compose([Validators.required,Validators.min(1)])],
@@ -64,6 +65,7 @@ export class AddProgramComponent implements OnInit {
   }
 
   assignProgram(form: Object) {
+    this.spinner.show()
     //build homework data object
     let hw_data = {
       "homework": JSON.stringify(form),
@@ -73,7 +75,6 @@ export class AddProgramComponent implements OnInit {
     }
 
     this.apiService.assignHomework(this.user['code'], this.patient, hw_data).subscribe((response) => {
-      console.log(response);
       //then send email
       let email = {
         email: 'vince.shadbolt@gmail.com',
@@ -89,20 +90,28 @@ export class AddProgramComponent implements OnInit {
       }
       if(form['on_date']) {
         email['body'] = email ['body'] + `${form['on_date'].toString().slice(3, 15)} to ${new Date().toString().slice(3, 15)} <br> <br>
-        ${this.user['first name']}, OT Reg.`
+        ${this.user['first name']} ${this.user['last name']}, OT Reg.`
       }
       else if (form['no_after']) {
         email['body'] = email ['body'] + `${form['no_after']} sessions <br>
         ${this.user['first name']} ${this.user['last name']}, OT Reg.`
       }
       this.apiService.sendEmail(email).subscribe((response) => {
-        console.log(response);
-        window.location.href=`/#profile?id=${this.patient}`        
+        setTimeout(() => {
+          this.spinner.hide()
+          window.location.href=`/#profile?id=${this.patient}`  
+        }, 1000)      
       }, (error) => {
         console.log(error);
+        setTimeout(() => {
+          this.spinner.hide()
+        }, 1000)
       })
     }, (error) => {
       console.log(error);
+      setTimeout(() => {
+        this.spinner.hide()
+      }, 1000)
     });
   }
 

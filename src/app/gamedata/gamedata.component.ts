@@ -3,6 +3,7 @@ import { ApiService } from '../_services/api.service';
 import { ActivatedRoute } from '@angular/router';
 import { Chart } from 'angular-highcharts';
 import { DatePipe } from '@angular/common';
+import { NgxSpinnerService } from 'ngx-spinner';
 declare var Rainbow: any;
 
 @Component({
@@ -66,7 +67,8 @@ export class GamedataComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     private route: ActivatedRoute,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private spinner: NgxSpinnerService
     ) { 
     this.user = JSON.parse(localStorage.getItem('currentUser'));
     //settings for color gradient
@@ -90,6 +92,7 @@ export class GamedataComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.spinner.show()
     this.route.queryParams
     .subscribe(params => {
       this.patient = params['id'];
@@ -101,7 +104,6 @@ export class GamedataComponent implements OnInit {
       this.profile = response['records'][0]
 
       this.apiService.getGameData(this.user['code'], this.patient, this.game_title.replace(/ /g, '_')).subscribe((response) => {
-        console.log(response);
         //format data
         let records = response['records'];
         if(records.length) {
@@ -121,18 +123,27 @@ export class GamedataComponent implements OnInit {
             type: 'scatter',
             data: performance
           }, true, false)
+          setTimeout(() => {
+            this.spinner.hide()
+          }, 2000)
         }
       }, (error) => {
         console.log(error);
         this.noData = true;
+        setTimeout(() => {
+          this.spinner.hide()
+        }, 2000)
       })
-    })
+    }, (error) => {
+      console.log(error);
+      setTimeout(() => {
+        this.spinner.hide()
+      }, 2000)
+    });
 
     //read gamelist and get data for this game
     this.apiService.getGamelist().subscribe((response) => {
-      console.log(response)
       this.game_info = response['records'].find(i => i.game_title === this.game_title.replace(/ /g, '_'));
-      console.log(this.game_info)
     })
   }
 
