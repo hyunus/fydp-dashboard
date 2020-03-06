@@ -36,7 +36,9 @@ export class ProfileComponent implements OnInit {
       },
       panKey: 'shift',
       style: {
-        fontFamily: 'Archivo'
+        fontFamily: 'Archivo',
+        fontSize: "20px",
+        color: "rgba(0, 0, 0, 0.87)"
       },
     },
     credits: {
@@ -50,11 +52,29 @@ export class ProfileComponent implements OnInit {
       type: 'datetime',
       minorTickLength: 0,
       tickLength: 0,
+      labels: {
+        style: {
+          fontSize: "20px",
+          color: "rgba(0, 0, 0, 0.87)"
+        }
+      },
+      lineWidth: 1,
+      lineColor: "black",
+      tickColor: "black",
     },
     yAxis: {
       title: {
         text: 'Sessions',
-        align: "low"
+        align: "low",
+        style: {
+          color: "#000000"
+        }
+      },
+      labels: {
+        style: {
+          fontSize: "20px",
+          color: "rgba(0, 0, 0, 0.87)"
+        }
       },
       gridLineColor: 'transparent',
       lineWidth: 0,
@@ -71,7 +91,9 @@ export class ProfileComponent implements OnInit {
       enabled: true,
       align: "right",
       itemStyle: {
-        fontSize: "16px"
+        fontSize: "16px",
+        fontWeight: "normal",
+        color: "rgba(0, 0, 0, 0.6)"
       }
     },
     plotOptions: {
