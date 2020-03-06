@@ -18,14 +18,21 @@ export class PatientsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   //tags for therapy goals
   protected tags = [
-    {"goal": "Bilateral_Coordination"},
+    {"goal": "Attention"},
+    {"goal": "Memory"},
+    {"goal": "Organization"},
+    {"goal": "Finger_control"},
+    {"goal": "Hand_strength"},
+    {"goal": "Pincer_grasp"},
+    {"goal": "Wrist_control"},
     {"goal": "Balance"},
-    {"goal": "Visual_Discrimination"},
-    {"goal": "Handwriting"},
-    {"goal": "Sensory_Integration"},
-    {"goal": "Social_Skills"},
-    {"goal": "Working_Memory"}
-]
+    {"goal": "Bilateral_coordination"},
+    {"goal": "Bathing"},
+    {"goal": "Dressing"},
+    {"goal": "Self-feeding"},
+    {"goal": "Directions"},
+    {"goal": "Taking_turns"}
+  ]
   //form control for selected tag
   public tagMultiCtrl: FormControl = new FormControl();
 
