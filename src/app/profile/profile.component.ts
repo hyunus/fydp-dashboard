@@ -171,6 +171,9 @@ export class ProfileComponent implements OnInit {
       //show placeholder for graph
       console.log(error);
       this.noData = true;
+      setTimeout(() => {
+        this.spinner.hide()
+      }, 500)
     })
 
     //get patient profile from backend
