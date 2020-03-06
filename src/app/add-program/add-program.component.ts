@@ -132,6 +132,7 @@ export class AddProgramComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.spinner.show()
     //get patient uid from query params
     this.route.queryParams
     .subscribe(params => {
@@ -157,8 +158,14 @@ export class AddProgramComponent implements OnInit {
         + game['image']);
       })
       console.log(this.gameList)
+      setTimeout(() => {
+        this.spinner.hide()
+      }, 500)
     }, (error) => {
       console.log(error)
+      setTimeout(() => {
+        this.spinner.hide()
+      }, 500)
     })
   }
 

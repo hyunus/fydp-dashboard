@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
         title: "NEW GAME: Rec Room for environment organization",
         subtitle: "Rec Room has partnered with Pluto Care to release an occupational therapy version of their titular VR game Rec Room. This features multiple rooms for exploration, organization, and fun!",
         link: "REC ROOM",
-        url: "/",
+        url: "/#games",
         img: "/assets/article3.png"
       },
       {

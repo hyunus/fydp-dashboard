@@ -45,6 +45,11 @@ mat-sidenav {
   margin-bottom: 15px;
 }
 
+.home-link {
+  color: #3B47B5;
+  text-decoration: none;
+}
+
 mat-card {
   padding-left: 60px;
   padding-right: 60px;

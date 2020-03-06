@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../_services/api.service';
 import { ActivatedRoute } from '@angular/router';
 import { Chart } from 'angular-highcharts';
-import { DatePipe } from '@angular/common';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { DomSanitizer } from '@angular/platform-browser';
 declare var Rainbow: any;
@@ -11,7 +10,6 @@ declare var Rainbow: any;
   selector: 'app-gamedata',
   templateUrl: './gamedata.component.html',
   styleUrls: ['./gamedata.component.css', '../home/home.component.css', '../profile/profile.component.css'],
-  providers: [DatePipe]
 })
 export class GamedataComponent implements OnInit {
 
@@ -105,15 +103,10 @@ export class GamedataComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     private route: ActivatedRoute,
-    private datePipe: DatePipe,
     private spinner: NgxSpinnerService,
     private _sanitizer: DomSanitizer
     ) { 
     this.user = JSON.parse(localStorage.getItem('currentUser'));
-    //settings for color gradient
-    this.rainbow = new Rainbow();
-    this.rainbow.setSpectrum('#ebe8e9', '#DD4573')
-    this.rainbow.setNumberRange(1, 10)
     }
 
     goProfile() {
@@ -132,6 +125,12 @@ export class GamedataComponent implements OnInit {
 
   ngOnInit() {
     this.spinner.show()
+    //settings for color gradient
+    this.rainbow = new Rainbow();
+    this.rainbow.setSpectrum('#ebe8e9', '#DD4573')
+    this.rainbow.setNumberRange(1, 10)
+
+    //get query params
     this.route.queryParams
     .subscribe(params => {
       this.patient = params['id'];
@@ -144,9 +143,6 @@ export class GamedataComponent implements OnInit {
 
       this.apiService.getGameData(this.user['code'], this.patient, this.game_title.replace(/ /g, '_')).subscribe((response) => {
         //format data
-        setTimeout(() => {
-          this.spinner.hide()
-        }, 2000)
         let records = response['records'];
         if(records.length) {
           var performance = records.map((record: Object) => {
@@ -164,6 +160,9 @@ export class GamedataComponent implements OnInit {
             type: 'scatter',
             data: performance
           }, true, false)
+          setTimeout(() => {
+            this.spinner.hide()
+          }, 2000)
         }
       }, (error) => {
         console.log(error);

@@ -55,3 +55,9 @@
 .pointer {
     cursor: pointer;
 }
+
+.button-container {
+    height: 100px;
+    width: auto;
+    margin-top: 15px;
+}

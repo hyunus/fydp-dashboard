@@ -6,6 +6,7 @@ import { ReplaySubject, Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
 import { MatSelect } from '@angular/material/select';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { NgxSpinnerService } from "ngx-spinner"
 
 export interface GameData {
   id: string;
@@ -63,7 +64,8 @@ export class GamesComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     private apiService: ApiService,
     private _sanitizer: DomSanitizer,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private spinner: NgxSpinnerService
     ) { 
     this.user = JSON.parse(localStorage.getItem('currentUser'));
   }
@@ -87,6 +89,7 @@ export class GamesComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.spinner.show()
     //call game list from backend
     this.apiService.getGamelist().subscribe((response) => {
       // this.gameList = response['records']
@@ -98,6 +101,9 @@ export class GamesComponent implements OnInit, AfterViewInit, OnDestroy {
         + record['image']);
       });
       this.gameList = response['records']
+      setTimeout(() => {
+        this.spinner.hide()
+      }, 1000)
       console.log(this.gameList)
     })
     // set initial selection
