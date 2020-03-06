@@ -192,6 +192,7 @@
                     <p>{{programForm.value['no_duration']}} {{programForm.value['duration']}} per session</p>
                     <p *ngIf="programForm.value['on_date']">{{today}} to {{programForm.value['on_date'] | date:'dd-MM-yyyy'}}</p>
                     <p *ngIf="programForm.value['no_after']">{{programForm.value['no_after']}} sessions</p>
+                    <p>{{user['first name']}}  {{user['last name']}}, OT Reg.</p>
                 </div>
             </div>
             <div class="button-container">
