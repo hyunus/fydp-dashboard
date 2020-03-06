@@ -74,6 +74,11 @@ export class PatientsComponent implements OnInit, AfterViewInit, OnDestroy {
     })
    }
 
+   logOut() {
+    localStorage.setItem('currentUser', "");
+    window.location.href="/#login"
+  }
+
    toggleView() {
     this.addView = !this.addView;
    }

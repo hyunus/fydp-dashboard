@@ -45,6 +45,11 @@ export class HomeComponent implements OnInit {
     ]
    }
 
+   logOut() {
+    localStorage.setItem('currentUser', "");
+    window.location.href="/#login"
+  }
+
   ngOnInit() {
   }
 

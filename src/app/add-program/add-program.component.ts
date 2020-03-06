@@ -60,6 +60,11 @@ export class AddProgramComponent implements OnInit {
     };
    }
 
+   logOut() {
+     localStorage.setItem('currentUser', "");
+     window.location.href="/#login"
+   }
+
    goProfile() {
     window.location.href=`/#profile?id=${this.patient}`
   }

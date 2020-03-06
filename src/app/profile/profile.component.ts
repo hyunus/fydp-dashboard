@@ -113,6 +113,11 @@ export class ProfileComponent implements OnInit {
     this.today = this.datePipe.transform(new Date(), 'dd-MM-yyyy');
    }
 
+   logOut() {
+    localStorage.setItem('currentUser', "");
+    window.location.href="/#login"
+  }
+
    goPatients() {
      window.location.href='/#patients'
    }
@@ -180,15 +185,21 @@ export class ProfileComponent implements OnInit {
 
       //get game list from backend
       this.apiService.getGamelist().subscribe((response2) => {
-      this.gameList = response2['records'];      
+
+        setTimeout(() => {
+          this.spinner.hide()
+        }, 500)
+        this.gameList = response2['records'];      
 
       //assemble game tiles from game list & patient assignments
       if(this.profile['assignments'].length) {
         this.profile['assignments'].forEach(element => {
           let game = element['game_title'];
           game = this.gameList.find(i => i.game_title === game);
-          game['homework'] = element['homework'] //add homework to game tile
-          this.gameTiles.push(game);
+          if (game) {
+            game['homework'] = element['homework'] //add homework to game tile
+            this.gameTiles.push(game);
+          }
         });
         console.log(this.gameTiles)
         this.gameTiles.forEach((game) => {
@@ -197,10 +208,17 @@ export class ProfileComponent implements OnInit {
           + game['icon']);
         });
         }
+      }, (error) => {
+        console.log(error);
         setTimeout(() => {
           this.spinner.hide()
         }, 500)
       })         
+    }, (error) => {
+      console.log(error);
+      setTimeout(() => {
+        this.spinner.hide()
+      }, 500)
     })
   }
 

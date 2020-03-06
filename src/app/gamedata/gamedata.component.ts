@@ -109,9 +109,14 @@ export class GamedataComponent implements OnInit {
     this.user = JSON.parse(localStorage.getItem('currentUser'));
     }
 
-    goProfile() {
-      window.location.href=`/#profile?id=${this.patient}`
-    }
+  logOut() {
+    localStorage.setItem('currentUser', "");
+    window.location.href="/#login"
+  }
+
+  goProfile() {
+    window.location.href=`/#profile?id=${this.patient}`
+  }
 
   //function to get color for data point based on percentage accuracy
   getColor(number: number) {

@@ -70,6 +70,11 @@ export class GamesComponent implements OnInit, AfterViewInit, OnDestroy {
     this.user = JSON.parse(localStorage.getItem('currentUser'));
   }
 
+  logOut() {
+    localStorage.setItem('currentUser', "");
+    window.location.href="/#login"
+  }
+
   selectGame(game: Object) {
     this.selected_game = game;
     console.log(this.selected_game)
