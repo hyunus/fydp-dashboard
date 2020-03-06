@@ -4,6 +4,7 @@
 
 .background {
   background-color: #FFFFFF;
+  padding-top: 50px;
 }
 
 .name-container {
@@ -33,6 +34,17 @@ mat-sidenav {
   color: #FFFFFF;
 }
 
+.home-card {
+  margin-left: 100px;
+}
+
+.home-title {
+  font-family: 'Archivo';
+  font-size: 30px;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
 mat-card {
   padding-left: 60px;
   padding-right: 60px;
@@ -40,8 +52,8 @@ mat-card {
   margin-bottom: 30px;
   width: 85%;
   flex-direction: column;
-  border: none !important;
-  box-shadow: none !important;
+  /* border: none !important;
+  box-shadow: none !important; */
 }
 
 .white {

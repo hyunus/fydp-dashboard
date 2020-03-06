@@ -23,31 +23,17 @@
         </div>
     </mat-sidenav>
     <mat-sidenav-content class="background">
-        <mat-card class="home">
-            <table>
-                <tr>
-                    <td>
-                        <h1>
-                            Good afternoon, {{user['first name']}}
-                        </h1>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="body-text">
-                            Welcome to Pluto Care! Start browsing our games or adding your patients 
-                            to track their gameplay progress.
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </mat-card>
-        <div *ngFor="let article of articles" class="main-text">
+        <h1 class="home-card">WELCOME, {{user['first name']}}</h1>
+        <div *ngFor="let article of articles" class="body-text home-card">
                 <mat-card>
-                    <mat-card-title>{{article.title}}</mat-card-title>
-                    <mat-card-subtitle>{{article.subtitle}}</mat-card-subtitle>
+                    <mat-card-title>
+                        <div class="home-title">{{article.title}}</div>
+                    </mat-card-title>
+                    <mat-card-subtitle>
+                        <div class="body-text">{{article.subtitle}}</div>
+                    </mat-card-subtitle>
                     <mat-card-content>
-                        <a>{{article.link}}</a>
+                        <a [href]="article['url']" class="body-text">{{article.link}}</a>
                     </mat-card-content>
                     <img mat-card-image src="{{article.img}}">
                 </mat-card>
