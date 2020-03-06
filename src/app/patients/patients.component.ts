@@ -77,7 +77,7 @@ export class PatientsComponent implements OnInit, AfterViewInit, OnDestroy {
       'dob': [null, Validators.required],
       'recipient_name': [null, Validators.required],
       'recipient_email': [null, Validators.compose([Validators.required, Validators.email])],
-      'consent': [null, Validators.required]
+      'consent': [false, Validators.required]
     })
    }
 
