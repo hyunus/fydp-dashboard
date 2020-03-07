@@ -94,7 +94,7 @@ export class AddProgramComponent implements OnInit {
         ${form['no_duration']} ${form['duration']} per session <br>`
       }
       if(form['on_date']) {
-        email['body'] = email ['body'] + `${form['on_date'].toString().slice(3, 15)} to ${new Date().toString().slice(3, 15)} <br> <br>
+        email['body'] = email ['body'] + `${new Date().toString().slice(3, 15)} to ${form['on_date'].toString().slice(3, 15)} <br> <br>
         ${this.user['first name']} ${this.user['last name']}, OT Reg.`
       }
       else if (form['no_after']) {
