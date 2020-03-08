@@ -95,7 +95,8 @@ export class GamedataComponent implements OnInit {
             return 'ACCURACY: ' + this['accuracy'] + '<br> LEVEL: ' + this.y + '<br> DATE:' + new Date(this['date']).toString().slice(3, 15) + '<br> SESSION: ' + this.name
           },
           headerFormat: ''
-        }
+        },
+        pointStart: 1
       }
     }
   })
@@ -122,9 +123,9 @@ export class GamedataComponent implements OnInit {
   getColor(number: number) {
     number = number * 10;
     number = Math.round(number)
-    if  (!number) {
-      number = 1;
-    }
+    // if  (!number) {
+    //   number = 1;
+    // }
     return '#' + this.rainbow.colorAt(number);
   }
 
